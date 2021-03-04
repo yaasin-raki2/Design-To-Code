@@ -10,23 +10,6 @@ interface DesignAttrs {
     typeOfFile: FileTypes;
     link: string;
   };
-  likes: {
-    quantity: number;
-    likesOwners?: {
-      userId: string;
-    }[];
-  };
-  comments: {
-    quantity: number;
-    commentsArray?: {
-      userId: string;
-      commentText: string;
-    }[];
-  };
-  submitions: {
-    quantity: number;
-    submitionsArray?: string[];
-  };
 }
 
 interface DesignDoc extends mongoose.Document {
@@ -39,20 +22,20 @@ interface DesignDoc extends mongoose.Document {
   };
   likes: {
     quantity: number;
-    likesOwners?: {
+    likesOwners: {
       userId: string;
     }[];
   };
   comments: {
     quantity: number;
-    commentsArray?: {
+    commentsArray: {
       userId: string;
       commentText: string;
     }[];
   };
   submitions: {
     quantity: number;
-    submitionsArray?: string[];
+    submitionsArray: string[];
   };
 }
 
@@ -80,53 +63,40 @@ const designSchema = new mongoose.Schema({
       type: String,
       enum: Object.values(FileTypes),
     },
+    link: {
+      required: true,
+      type: String,
+    },
   },
   likes: {
     quantity: {
-      required: true,
       type: Number,
       default: 0,
     },
     likesOwners: [
       {
-        userId: {
-          required: true,
-          type: String,
-        },
+        userId: String,
       },
     ],
   },
   comments: {
     quantity: {
-      required: true,
       type: Number,
       default: 0,
     },
     commentsArray: [
       {
-        userId: {
-          required: true,
-          type: String,
-        },
-        commentText: {
-          required: true,
-          type: String,
-        },
+        userId: String,
+        commentText: String,
       },
     ],
   },
   submitions: {
     quantity: {
-      required: true,
       type: Number,
       default: 0,
     },
-    submitionsArray: [
-      {
-        required: true,
-        type: String,
-      },
-    ],
+    submitionsArray: [String],
   },
 });
 
