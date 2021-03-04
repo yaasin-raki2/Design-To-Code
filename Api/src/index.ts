@@ -3,9 +3,11 @@ import mongoose from "mongoose";
 import { json } from "body-parser";
 import "express-async-errors";
 
-import { newDesignRouter } from "./routes/designs/new";
 import { NotFoundError } from "./errors/not-found-error";
 import { errorHandler } from "./middlewares/error-handler";
+
+import { newDesignRouter } from "./routes/designs/new";
+import { updateDesignRouter } from "./routes/designs/update";
 
 const app = express();
 const db = mongoose.connection;
@@ -13,6 +15,7 @@ const db = mongoose.connection;
 app.use(json());
 
 app.use(newDesignRouter);
+app.use(updateDesignRouter);
 
 app.all("*", async () => {
   throw new NotFoundError();
