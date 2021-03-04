@@ -3,16 +3,16 @@ import mongoose from "mongoose";
 import { FileTypes, DifficultyLevels } from "../utilities/enums";
 
 interface DesignAttrs {
-  colorPalette: string;
+  colorPalette: string[];
   difficulty: DifficultyLevels;
-  image: File;
+  image: string;
   file: {
     typeOfFile: FileTypes;
     link: string;
   };
   likes: {
     quantity: number;
-    likesOwners: {
+    likesOwners?: {
       userId: string;
     }[];
   };
@@ -30,16 +30,16 @@ interface DesignAttrs {
 }
 
 interface DesignDoc extends mongoose.Document {
-  colorPalette: string;
+  colorPalette: string[];
   difficulty: DifficultyLevels;
-  image: File;
+  image: string;
   file: {
     typeOfFile: FileTypes;
     link: string;
   };
   likes: {
     quantity: number;
-    likesOwners: {
+    likesOwners?: {
       userId: string;
     }[];
   };
@@ -72,10 +72,9 @@ const designSchema = new mongoose.Schema({
   },
   image: {
     required: true,
-    type: File,
+    type: String,
   },
   file: {
-    required: true,
     typeOfFile: {
       required: true,
       type: String,
@@ -83,7 +82,6 @@ const designSchema = new mongoose.Schema({
     },
   },
   likes: {
-    required: true,
     quantity: {
       required: true,
       type: Number,
@@ -91,7 +89,6 @@ const designSchema = new mongoose.Schema({
     },
     likesOwners: [
       {
-        required: true,
         userId: {
           required: true,
           type: String,
@@ -100,7 +97,6 @@ const designSchema = new mongoose.Schema({
     ],
   },
   comments: {
-    required: true,
     quantity: {
       required: true,
       type: Number,
@@ -108,7 +104,6 @@ const designSchema = new mongoose.Schema({
     },
     commentsArray: [
       {
-        required: false,
         userId: {
           required: true,
           type: String,
@@ -121,7 +116,6 @@ const designSchema = new mongoose.Schema({
     ],
   },
   submitions: {
-    required: true,
     quantity: {
       required: true,
       type: Number,
@@ -129,7 +123,7 @@ const designSchema = new mongoose.Schema({
     },
     submitionsArray: [
       {
-        required: false,
+        required: true,
         type: String,
       },
     ],
