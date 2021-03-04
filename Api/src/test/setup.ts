@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 
-let mongo: any;
-
 beforeAll(async () => {
   await mongoose.connect("mongodb://localhost/test", {
     useNewUrlParser: true,
@@ -20,6 +18,5 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
-  await mongo.stop();
   await mongoose.connection.close();
 });

@@ -24,7 +24,7 @@ router.post(
     });
     await design.save();
 
-    res.send(design);
+    res.status(201).send(design);
   }
 );
 
