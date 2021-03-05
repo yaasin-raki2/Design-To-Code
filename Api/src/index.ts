@@ -9,6 +9,7 @@ import { errorHandler } from "./middlewares/error-handler";
 import { newDesignRouter } from "./routes/designs/new";
 import { updateDesignRouter } from "./routes/designs/update";
 import { showDesignRouter } from "./routes/designs/show";
+import { indexDesignRouter } from "./routes/designs/index";
 
 const app = express();
 const db = mongoose.connection;
@@ -18,6 +19,7 @@ app.use(json());
 app.use(newDesignRouter);
 app.use(updateDesignRouter);
 app.use(showDesignRouter);
+app.use(indexDesignRouter);
 
 app.all("*", async () => {
   throw new NotFoundError();
