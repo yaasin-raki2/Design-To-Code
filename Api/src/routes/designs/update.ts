@@ -4,6 +4,7 @@ import { Design } from "../../models/design";
 import { validateRequest } from "../../middlewares/validate-request";
 import { updateDesignValidation } from "../../validations/updateDesign";
 import { NotFoundError } from "../../errors/not-found-error";
+import { BadRequestError } from "../../errors/bad-request-error";
 
 const router = express.Router();
 
@@ -12,6 +13,10 @@ router.patch(
   updateDesignValidation,
   validateRequest,
   async (req: Request, res: Response) => {
+    if (Object.keys(req.body).length === 0 && req.body.constructor === Object) {
+      throw new BadRequestError("You must provide a field to update");
+    }
+
     const design = await Design.findById(req.params.id);
 
     if (!design) {
