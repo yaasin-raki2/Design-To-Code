@@ -11,3 +11,9 @@ export enum DifficultyLevels {
   Medium = "medium",
   Easy = "easy",
 }
+
+export enum OSPlatforms {
+  Github = "github",
+  Gitlab = "gitlab",
+  Bitbucket = "bitbucket",
+}
