@@ -11,6 +11,8 @@ import { updateDesignRouter } from "./routes/designs/update";
 import { showDesignRouter } from "./routes/designs/show";
 import { indexDesignRouter } from "./routes/designs/index";
 
+import { newSubmitionRouter } from "./routes/submitions/new";
+
 const app = express();
 const db = mongoose.connection;
 
@@ -20,6 +22,8 @@ app.use(newDesignRouter);
 app.use(updateDesignRouter);
 app.use(showDesignRouter);
 app.use(indexDesignRouter);
+
+app.use(newSubmitionRouter);
 
 app.all("*", async () => {
   throw new NotFoundError();
