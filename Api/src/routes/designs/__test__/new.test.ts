@@ -15,6 +15,7 @@ it("Returns 400 if provided invalid properties", async () => {
   await request(app)
     .post("/api/designs")
     .send({
+      name: "sta",
       colorPalette: ["red"],
       difficulty: "Haard",
       file: {
@@ -30,6 +31,7 @@ it("Returns 201 if provided valid properties", async () => {
   await request(app)
     .post("/api/designs")
     .send({
+      name: "startup",
       colorPalette: ["red", "yellow", "#23A4B3"],
       difficulty: DifficultyLevels.Hard,
       file: {

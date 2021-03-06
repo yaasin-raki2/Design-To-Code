@@ -3,6 +3,10 @@ import { body } from "express-validator";
 import { DifficultyLevels, FileTypes } from "../utilities/enums";
 
 export const newDesignValidation = [
+  body("name")
+    .isString()
+    .isLength({ min: 3, max: 15 })
+    .withMessage("Design's name must be a string between 3 and 15 characters"),
   body("colorPalette")
     .isArray({ min: 2, max: 10 })
     .withMessage("Color palette must have at least 2 colors and a max of 10 colors"),

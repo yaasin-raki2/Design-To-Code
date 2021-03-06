@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import { app } from "../../../index";
 
 const data = {
+  name: "startup",
   colorPalette: ["red", "green"],
   difficulty: "hard",
   file: {

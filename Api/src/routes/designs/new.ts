@@ -21,6 +21,7 @@ router.post(
         typeOfFile: data.file.typeOfFile,
       },
       image: data.image,
+      name: data.name,
     });
     await design.save();
 

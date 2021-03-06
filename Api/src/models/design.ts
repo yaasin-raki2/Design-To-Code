@@ -6,6 +6,7 @@ interface DesignAttrs {
   colorPalette: string[];
   difficulty: DifficultyLevels;
   image: string;
+  name: string;
   file: {
     typeOfFile: FileTypes;
     link: string;
@@ -16,6 +17,7 @@ interface DesignDoc extends mongoose.Document {
   colorPalette: string[];
   difficulty: DifficultyLevels;
   image: string;
+  name: string;
   file: {
     typeOfFile: FileTypes;
     link: string;
@@ -37,6 +39,7 @@ interface DesignDoc extends mongoose.Document {
     quantity: number;
     submitionsArray: string[];
   };
+  approved: boolean;
 }
 
 interface DesignModel extends mongoose.Model<DesignDoc> {
@@ -54,6 +57,10 @@ const designSchema = new mongoose.Schema({
     enum: Object.values(DifficultyLevels),
   },
   image: {
+    required: true,
+    type: String,
+  },
+  name: {
     required: true,
     type: String,
   },
@@ -97,6 +104,10 @@ const designSchema = new mongoose.Schema({
       default: 0,
     },
     submitionsArray: [String],
+  },
+  approved: {
+    type: Boolean,
+    default: false,
   },
 });
 

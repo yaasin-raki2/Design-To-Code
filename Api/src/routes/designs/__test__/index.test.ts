@@ -4,6 +4,7 @@ import { app } from "../../../index";
 
 const generateData = (image: string) => {
   const data = {
+    name: "startup",
     colorPalette: ["red", "green"],
     difficulty: "hard",
     file: {

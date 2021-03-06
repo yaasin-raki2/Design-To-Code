@@ -19,6 +19,7 @@ it("returns 200 when given valid id for an existing document", async () => {
   const response = await request(app)
     .post("/api/designs")
     .send({
+      name: "startup",
       colorPalette: ["red", "green"],
       difficulty: "hard",
       file: {
