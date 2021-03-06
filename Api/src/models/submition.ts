@@ -40,6 +40,10 @@ interface SubmitionModel extends mongoose.Model<SubmitionDoc> {
 }
 
 const submitionSchema = new mongoose.Schema({
+  userId: {
+    required: true,
+    type: String,
+  },
   image: {
     required: true,
     type: String,

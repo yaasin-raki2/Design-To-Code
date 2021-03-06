@@ -12,18 +12,16 @@ import { showDesignRouter } from "./routes/designs/showDesign";
 import { indexDesignRouter } from "./routes/designs/indexDesign";
 
 import { newSubmitionRouter } from "./routes/submitions/newSubmition";
+import { updateSubmitionRouter } from "./routes/submitions/updateSubmition";
 
 const app = express();
 const db = mongoose.connection;
 
 app.use(json());
 
-app.use(newDesignRouter);
-app.use(updateDesignRouter);
-app.use(showDesignRouter);
-app.use(indexDesignRouter);
+app.use([newDesignRouter, updateDesignRouter, showDesignRouter, indexDesignRouter]);
 
-app.use(newSubmitionRouter);
+app.use([newSubmitionRouter, updateSubmitionRouter]);
 
 app.all("*", async () => {
   throw new NotFoundError();
