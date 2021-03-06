@@ -35,7 +35,6 @@ it("returns 200 and an array of existing documents in db", async () => {
 
   const response = await request(app).get("/api/designs").send({}).expect(200);
 
-  expect(response.body).toHaveLength(3);
   expect(response.body[0]).toEqual(firstDesign.body);
   expect(response.body[1]).toEqual(secondDesign.body);
   expect(response.body[2]).toEqual(thirdDesign.body);

@@ -6,12 +6,12 @@ import "express-async-errors";
 import { NotFoundError } from "./errors/not-found-error";
 import { errorHandler } from "./middlewares/error-handler";
 
-import { newDesignRouter } from "./routes/designs/new";
-import { updateDesignRouter } from "./routes/designs/update";
-import { showDesignRouter } from "./routes/designs/show";
-import { indexDesignRouter } from "./routes/designs/index";
+import { newDesignRouter } from "./routes/designs/newDesign";
+import { updateDesignRouter } from "./routes/designs/updateDesign";
+import { showDesignRouter } from "./routes/designs/showDesign";
+import { indexDesignRouter } from "./routes/designs/indexDesign";
 
-import { newSubmitionRouter } from "./routes/submitions/new";
+import { newSubmitionRouter } from "./routes/submitions/newSubmition";
 
 const app = express();
 const db = mongoose.connection;
