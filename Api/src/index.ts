@@ -14,6 +14,7 @@ import { indexDesignRouter } from "./routes/designs/indexDesign";
 import { newSubmitionRouter } from "./routes/submitions/newSubmition";
 import { updateSubmitionRouter } from "./routes/submitions/updateSubmition";
 import { showSubmitionRouter } from "./routes/submitions/showSubmition";
+import { indexSubmitionRouter } from "./routes/submitions/indexSubmition";
 
 const app = express();
 const db = mongoose.connection;
@@ -22,7 +23,12 @@ app.use(json());
 
 app.use([newDesignRouter, updateDesignRouter, showDesignRouter, indexDesignRouter]);
 
-app.use([newSubmitionRouter, updateSubmitionRouter, showSubmitionRouter]);
+app.use([
+  newSubmitionRouter,
+  updateSubmitionRouter,
+  showSubmitionRouter,
+  indexSubmitionRouter,
+]);
 
 app.all("*", async () => {
   throw new NotFoundError();
