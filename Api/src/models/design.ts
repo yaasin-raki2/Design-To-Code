@@ -32,7 +32,26 @@ interface DesignDoc extends mongoose.Document {
     quantity: number;
     commentsArray: {
       userId: string;
-      commentText: string;
+      comment: string;
+      likes: {
+        quantity: number;
+        likesOwners: {
+          userId: string;
+        }[];
+      };
+      replies: {
+        quantity: number;
+        repliesArray: {
+          userId: string;
+          reply: string;
+          likes: {
+            quantity: number;
+            likesOwners: {
+              userId: string;
+            }[];
+          };
+        }[];
+      };
     }[];
   };
   submitions: {
@@ -94,7 +113,37 @@ const designSchema = new mongoose.Schema({
     commentsArray: [
       {
         userId: String,
-        commentText: String,
+        comment: String,
+        likes: {
+          quantity: {
+            type: Number,
+            default: 0,
+          },
+          likesOwners: String,
+        },
+        replies: {
+          quantity: {
+            type: Number,
+            default: 0,
+          },
+          repliesArray: [
+            {
+              userId: String,
+              reply: String,
+              likes: {
+                quantity: {
+                  type: Number,
+                  default: 0,
+                },
+                likesOwners: [
+                  {
+                    userId: String,
+                  },
+                ],
+              },
+            },
+          ],
+        },
       },
     ],
   },
