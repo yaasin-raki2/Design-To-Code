@@ -2,8 +2,8 @@ import express, { Request, Response } from "express";
 
 import { DesignDoc } from "../../models/design";
 import { SubmitionDoc } from "../../models/submition";
-import { CreateComment } from "../../utilities/CreateComment";
-import { CreateReply } from "../../utilities/CreateReply";
+import { CreateComment } from "../../utilities/comments/CreateComment";
+import { CreateReply } from "../../utilities/comments/CreateReply";
 import { NotFoundError } from "../../errors/not-found-error";
 import { validateRequest } from "../../middlewares/validate-request";
 import { newCommentValidation } from "../../validations/newCommentValidation";

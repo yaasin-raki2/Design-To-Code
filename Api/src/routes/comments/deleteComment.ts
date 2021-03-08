@@ -3,8 +3,8 @@ import express, { Request, Response } from "express";
 import { NotFoundError } from "../../errors/not-found-error";
 import { DesignDoc } from "../../models/design";
 import { SubmitionDoc } from "../../models/submition";
-import { DeleteComment } from "../../utilities/DeleteComment";
-import { DeleteReply } from "../../utilities/DeleteReply";
+import { DeleteComment } from "../../utilities/comments/DeleteComment";
+import { DeleteReply } from "../../utilities/comments/DeleteReply";
 import { newCommentValidation } from "../../validations/deleteCommentValidation";
 import { validateRequest } from "../../middlewares/validate-request";
 

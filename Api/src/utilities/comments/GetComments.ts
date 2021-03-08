@@ -1,9 +1,9 @@
 import { ObjectId } from "mongoose";
-import { NotFoundError } from "../errors/not-found-error";
-import { Design, DesignModel } from "../models/design";
-import { Submition, SubmitionModel } from "../models/submition";
+import { NotFoundError } from "../../errors/not-found-error";
+import { Design, DesignModel } from "../../models/design";
+import { Submition, SubmitionModel } from "../../models/submition";
 
-import { Models } from "./enums";
+import { Models } from "../enums";
 
 export interface CommentsToGetData {
   model: Models;

@@ -1,9 +1,9 @@
 import { ObjectId } from "mongoose";
 
-import { Design, DesignModel } from "../models/design";
-import { Submition, SubmitionModel } from "../models/submition";
-import { NotFoundError } from "../errors/not-found-error";
-import { Models } from "./enums";
+import { Design, DesignModel } from "../../models/design";
+import { Submition, SubmitionModel } from "../../models/submition";
+import { NotFoundError } from "../../errors/not-found-error";
+import { Models } from "../enums";
 
 export interface ReplyData {
   userId: string;

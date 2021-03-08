@@ -26,6 +26,7 @@ export interface DesignDoc extends mongoose.Document {
     quantity: number;
     likesOwners: {
       userId: string;
+      liked: boolean;
     }[];
   };
   comments: {
@@ -38,6 +39,7 @@ export interface DesignDoc extends mongoose.Document {
         quantity: number;
         likesOwners: {
           userId: string;
+          liked: boolean;
         }[];
       };
       replies?: {
@@ -50,6 +52,7 @@ export interface DesignDoc extends mongoose.Document {
             quantity: number;
             likesOwners: {
               userId: string;
+              liked: boolean;
             }[];
           };
         }[];
@@ -104,6 +107,10 @@ const designSchema = new mongoose.Schema({
     likesOwners: [
       {
         userId: String,
+        liked: {
+          type: Boolean,
+          default: false,
+        },
       },
     ],
   },
@@ -124,6 +131,10 @@ const designSchema = new mongoose.Schema({
           likesOwners: [
             {
               userId: String,
+              liked: {
+                type: Boolean,
+                default: false,
+              },
             },
           ],
         },
@@ -144,6 +155,10 @@ const designSchema = new mongoose.Schema({
                 likesOwners: [
                   {
                     userId: String,
+                    liked: {
+                      type: Boolean,
+                      default: false,
+                    },
                   },
                 ],
               },

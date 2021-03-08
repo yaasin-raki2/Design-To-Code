@@ -24,6 +24,7 @@ export interface SubmitionDoc extends mongoose.Document {
     quantity: number;
     likesOwners: {
       userId: string;
+      liked: boolean;
     }[];
   };
   comments: {
@@ -36,6 +37,7 @@ export interface SubmitionDoc extends mongoose.Document {
         quantity: number;
         likesOwners: {
           userId: string;
+          liked: boolean;
         }[];
       };
       replies?: {
@@ -48,6 +50,7 @@ export interface SubmitionDoc extends mongoose.Document {
             quantity: number;
             likesOwners: {
               userId: string;
+              liked: boolean;
             }[];
           };
         }[];
@@ -92,6 +95,10 @@ const submitionSchema = new mongoose.Schema({
     likesOwners: [
       {
         userId: String,
+        liked: {
+          type: Boolean,
+          default: false,
+        },
       },
     ],
   },
@@ -112,6 +119,10 @@ const submitionSchema = new mongoose.Schema({
           likesOwners: [
             {
               userId: String,
+              liked: {
+                type: Boolean,
+                default: false,
+              },
             },
           ],
         },
@@ -132,6 +143,10 @@ const submitionSchema = new mongoose.Schema({
                 likesOwners: [
                   {
                     userId: String,
+                    liked: {
+                      type: Boolean,
+                      default: false,
+                    },
                   },
                 ],
               },

@@ -3,8 +3,8 @@ import express, { Request, Response } from "express";
 import { indexCommentValidation } from "../../validations/indexCommentValidation";
 import { validateRequest } from "../../middlewares/validate-request";
 import { NotFoundError } from "../../errors/not-found-error";
-import { GetComments } from "../../utilities/GetComments";
-import { GetReplies } from "../../utilities/GetReplies";
+import { GetComments } from "../../utilities/comments/GetComments";
+import { GetReplies } from "../../utilities/comments/GetReplies";
 
 const router = express.Router();
 

@@ -1,9 +1,9 @@
 import { ObjectId } from "mongoose";
 
-import { Submition, SubmitionModel } from "../models/submition";
-import { NotFoundError } from "../errors/not-found-error";
-import { Design, DesignModel } from "../models/design";
-import { Models } from "./enums";
+import { Submition, SubmitionModel } from "../../models/submition";
+import { NotFoundError } from "../../errors/not-found-error";
+import { Design, DesignModel } from "../../models/design";
+import { Models } from "../enums";
 
 export interface ReplyToDeleteData {
   userId: string;

@@ -20,6 +20,8 @@ import { newCommentRouter } from "./routes/comments/newComment";
 import { deleteCommentRouter } from "./routes/comments/deleteComment";
 import { indexCommentRouter } from "./routes/comments/indexComment";
 
+import { newLikeRouter } from "./routes/likes/likeUnlike";
+
 const app = express();
 const db = mongoose.connection;
 
@@ -27,14 +29,16 @@ app.use(json());
 
 app.use([newDesignRouter, updateDesignRouter, showDesignRouter, indexDesignRouter]);
 
+app.use([newCommentRouter, deleteCommentRouter, indexCommentRouter]);
+
+app.use([newLikeRouter]);
+
 app.use([
   newSubmitionRouter,
   updateSubmitionRouter,
   showSubmitionRouter,
   indexSubmitionRouter,
 ]);
-
-app.use([newCommentRouter, deleteCommentRouter, indexCommentRouter]);
 
 app.all("*", async () => {
   throw new NotFoundError();
