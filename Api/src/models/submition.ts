@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { ObjectId } from "mongoose";
 
 import { OSPlatforms } from "../utilities/enums";
 
@@ -12,7 +12,7 @@ interface SubmitionAttrs {
   };
 }
 
-interface SubmitionDoc extends mongoose.Document {
+export interface SubmitionDoc extends mongoose.Document {
   userId: string;
   image: string;
   designName: string;
@@ -31,18 +31,19 @@ interface SubmitionDoc extends mongoose.Document {
     commentsArray: {
       userId: string;
       comment: string;
-      likes: {
+      _id?: ObjectId;
+      likes?: {
         quantity: number;
         likesOwners: {
           userId: string;
         }[];
       };
-      replies: {
+      replies?: {
         quantity: number;
         repliesArray: {
           userId: string;
           reply: string;
-          likes: {
+          likes?: {
             quantity: number;
             likesOwners: {
               userId: string;
@@ -54,7 +55,7 @@ interface SubmitionDoc extends mongoose.Document {
   };
 }
 
-interface SubmitionModel extends mongoose.Model<SubmitionDoc> {
+export interface SubmitionModel extends mongoose.Model<SubmitionDoc> {
   build(attrs: SubmitionAttrs): SubmitionDoc;
 }
 

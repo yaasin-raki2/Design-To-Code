@@ -17,3 +17,8 @@ export enum OSPlatforms {
   Gitlab = "gitlab",
   Bitbucket = "bitbucket",
 }
+
+export enum Models {
+  design = "design",
+  submition = "submition",
+}

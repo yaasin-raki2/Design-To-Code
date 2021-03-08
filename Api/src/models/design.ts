@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { ObjectId } from "mongoose";
 
 import { FileTypes, DifficultyLevels } from "../utilities/enums";
 
@@ -13,7 +13,7 @@ interface DesignAttrs {
   };
 }
 
-interface DesignDoc extends mongoose.Document {
+export interface DesignDoc extends mongoose.Document {
   colorPalette: string[];
   difficulty: DifficultyLevels;
   image: string;
@@ -33,18 +33,19 @@ interface DesignDoc extends mongoose.Document {
     commentsArray: {
       userId: string;
       comment: string;
-      likes: {
+      _id?: ObjectId;
+      likes?: {
         quantity: number;
         likesOwners: {
           userId: string;
         }[];
       };
-      replies: {
+      replies?: {
         quantity: number;
         repliesArray: {
           userId: string;
           reply: string;
-          likes: {
+          likes?: {
             quantity: number;
             likesOwners: {
               userId: string;
@@ -61,7 +62,7 @@ interface DesignDoc extends mongoose.Document {
   approved: boolean;
 }
 
-interface DesignModel extends mongoose.Model<DesignDoc> {
+export interface DesignModel extends mongoose.Model<DesignDoc> {
   build(attrs: DesignAttrs): DesignDoc;
 }
 
@@ -119,7 +120,11 @@ const designSchema = new mongoose.Schema({
             type: Number,
             default: 0,
           },
-          likesOwners: String,
+          likesOwners: [
+            {
+              userId: String,
+            },
+          ],
         },
         replies: {
           quantity: {
