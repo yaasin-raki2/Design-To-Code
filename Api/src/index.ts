@@ -18,6 +18,7 @@ import { indexSubmitionRouter } from "./routes/submitions/indexSubmition";
 
 import { newCommentRouter } from "./routes/comments/newComment";
 import { deleteCommentRouter } from "./routes/comments/deleteComment";
+import { indexCommentRouter } from "./routes/comments/indexComment";
 
 const app = express();
 const db = mongoose.connection;
@@ -33,7 +34,7 @@ app.use([
   indexSubmitionRouter,
 ]);
 
-app.use([newCommentRouter, deleteCommentRouter]);
+app.use([newCommentRouter, deleteCommentRouter, indexCommentRouter]);
 
 app.all("*", async () => {
   throw new NotFoundError();
