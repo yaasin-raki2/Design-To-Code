@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 
-import { indexCommentValidation } from "../../validations/indexCommentValidation";
+import { indexCommentValidation } from "../../validations/comments/indexCommentValidation";
 import { validateRequest } from "../../middlewares/validate-request";
 import { NotFoundError } from "../../errors/not-found-error";
 import { GetComments } from "../../utilities/comments/GetComments";

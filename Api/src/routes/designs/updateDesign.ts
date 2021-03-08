@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 
 import { Design } from "../../models/design";
 import { validateRequest } from "../../middlewares/validate-request";
-import { updateDesignValidation } from "../../validations/updateDesignValidation";
+import { updateDesignValidation } from "../../validations/designs/updateDesignValidation";
 import { NotFoundError } from "../../errors/not-found-error";
 import { BadRequestError } from "../../errors/bad-request-error";
 

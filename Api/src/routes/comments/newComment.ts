@@ -6,7 +6,7 @@ import { CreateComment } from "../../utilities/comments/CreateComment";
 import { CreateReply } from "../../utilities/comments/CreateReply";
 import { NotFoundError } from "../../errors/not-found-error";
 import { validateRequest } from "../../middlewares/validate-request";
-import { newCommentValidation } from "../../validations/newCommentValidation";
+import { newCommentValidation } from "../../validations/comments/newCommentValidation";
 
 const router = express.Router();
 

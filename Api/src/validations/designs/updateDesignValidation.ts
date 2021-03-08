@@ -1,6 +1,6 @@
 import { body } from "express-validator";
 
-import { DifficultyLevels, FileTypes } from "../utilities/enums";
+import { DifficultyLevels, FileTypes } from "../../utilities/enums";
 
 export const updateDesignValidation = [
   body("name")

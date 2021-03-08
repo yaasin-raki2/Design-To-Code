@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 
 import { Submition } from "../../models/submition";
-import { showValidation } from "../../validations/showValidation";
+import { showValidation } from "../../validations/general/showValidation";
 import { validateRequest } from "../../middlewares/validate-request";
 import { NotFoundError } from "../../errors/not-found-error";
 

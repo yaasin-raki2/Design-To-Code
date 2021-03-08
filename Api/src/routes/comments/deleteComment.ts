@@ -5,7 +5,7 @@ import { DesignDoc } from "../../models/design";
 import { SubmitionDoc } from "../../models/submition";
 import { DeleteComment } from "../../utilities/comments/DeleteComment";
 import { DeleteReply } from "../../utilities/comments/DeleteReply";
-import { newCommentValidation } from "../../validations/deleteCommentValidation";
+import { newCommentValidation } from "../../validations/comments/deleteCommentValidation";
 import { validateRequest } from "../../middlewares/validate-request";
 
 const router = express.Router();

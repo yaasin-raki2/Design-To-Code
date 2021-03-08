@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 
 import { Submition } from "../../models/submition";
 import { validateRequest } from "../../middlewares/validate-request";
-import { updateSubmitionValidation } from "../../validations/updateSubmitionValidation";
+import { updateSubmitionValidation } from "../../validations/submitions/updateSubmitionValidation";
 import { BadRequestError } from "../../errors/bad-request-error";
 import { NotFoundError } from "../../errors/not-found-error";
 

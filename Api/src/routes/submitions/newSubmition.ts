@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 
 import { Submition } from "../../models/submition";
 import { validateRequest } from "../../middlewares/validate-request";
-import { newSubmitionValidation } from "../../validations/newSubmitionValidation";
+import { newSubmitionValidation } from "../../validations/submitions/newSubmitionValidation";
 
 const router = express.Router();
 
