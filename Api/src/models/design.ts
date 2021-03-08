@@ -45,6 +45,7 @@ export interface DesignDoc extends mongoose.Document {
         repliesArray: {
           userId: string;
           reply: string;
+          _id?: ObjectId;
           likes?: {
             quantity: number;
             likesOwners: {

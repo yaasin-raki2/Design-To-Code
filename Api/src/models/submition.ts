@@ -43,6 +43,7 @@ export interface SubmitionDoc extends mongoose.Document {
         repliesArray: {
           userId: string;
           reply: string;
+          _id?: ObjectId;
           likes?: {
             quantity: number;
             likesOwners: {
