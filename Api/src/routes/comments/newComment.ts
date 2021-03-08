@@ -5,23 +5,30 @@ import { SubmitionDoc } from "../../models/submition";
 import { CreateComment } from "../../utilities/CreateComment";
 import { CreateReply } from "../../utilities/CreateReply";
 import { NotFoundError } from "../../errors/not-found-error";
+import { validateRequest } from "../../middlewares/validate-request";
+import { newCommentValidation } from "../../validations/newCommentValidation";
 
 const router = express.Router();
 
-router.post("/api/comments", async (req: Request, res: Response) => {
-  const data = req.body;
+router.post(
+  "/api/comments",
+  newCommentValidation,
+  validateRequest,
+  async (req: Request, res: Response) => {
+    const data = req.body;
 
-  let response: DesignDoc | SubmitionDoc | undefined;
+    let response: DesignDoc | SubmitionDoc | undefined;
 
-  if (data.comment) {
-    response = await CreateComment(data);
-  } else if (data.reply) {
-    response = await CreateReply(data);
+    if (data.comment) {
+      response = await CreateComment(data);
+    } else if (data.reply) {
+      response = await CreateReply(data);
+    }
+
+    if (!response) throw new NotFoundError();
+
+    res.status(201).send(response);
   }
-
-  if (!response) throw new NotFoundError();
-
-  res.status(201).send(response);
-});
+);
 
 export { router as newCommentRouter };
