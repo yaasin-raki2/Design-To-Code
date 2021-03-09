@@ -21,6 +21,7 @@ import { deleteCommentRouter } from "./routes/comments/deleteComment";
 import { indexCommentRouter } from "./routes/comments/indexComment";
 
 import { newLikeRouter } from "./routes/likes/likeUnlike";
+import { indexLikeOwnersRouter } from "./routes/likes/indexLikeOwners";
 
 const app = express();
 const db = mongoose.connection;
@@ -31,7 +32,7 @@ app.use([newDesignRouter, updateDesignRouter, showDesignRouter, indexDesignRoute
 
 app.use([newCommentRouter, deleteCommentRouter, indexCommentRouter]);
 
-app.use([newLikeRouter]);
+app.use([newLikeRouter, indexLikeOwnersRouter]);
 
 app.use([
   newSubmitionRouter,
