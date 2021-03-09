@@ -15,6 +15,7 @@ import { newSubmitionRouter } from "./routes/submitions/newSubmition";
 import { updateSubmitionRouter } from "./routes/submitions/updateSubmition";
 import { showSubmitionRouter } from "./routes/submitions/showSubmition";
 import { indexSubmitionRouter } from "./routes/submitions/indexSubmition";
+import { deleteSubmitionRouter } from "./routes/submitions/deleteSubmition";
 
 import { newCommentRouter } from "./routes/comments/newComment";
 import { deleteCommentRouter } from "./routes/comments/deleteComment";
@@ -39,6 +40,7 @@ app.use([
   updateSubmitionRouter,
   showSubmitionRouter,
   indexSubmitionRouter,
+  deleteSubmitionRouter,
 ]);
 
 app.all("*", async () => {
