@@ -12,7 +12,9 @@ router.get(
   showValidation,
   validateRequest,
   async (req: Request, res: Response) => {
-    const design = await Design.findById(req.params.id);
+    const design = await Design.findById(req.params.id).populate(
+      "submitions.submitionsArray"
+    );
 
     if (!design) {
       throw new NotFoundError();

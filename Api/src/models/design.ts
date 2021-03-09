@@ -1,6 +1,7 @@
 import mongoose, { ObjectId } from "mongoose";
 
 import { FileTypes, DifficultyLevels } from "../utilities/enums";
+import { SubmitionDoc } from "./submition";
 
 interface DesignAttrs {
   colorPalette: string[];
@@ -61,7 +62,7 @@ export interface DesignDoc extends mongoose.Document {
   };
   submitions: {
     quantity: number;
-    submitionsArray: string[];
+    submitionsArray: SubmitionDoc[];
   };
   approved: boolean;
 }
@@ -173,7 +174,12 @@ const designSchema = new mongoose.Schema({
       type: Number,
       default: 0,
     },
-    submitionsArray: [String],
+    submitionsArray: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Submition",
+      },
+    ],
   },
   approved: {
     type: Boolean,
