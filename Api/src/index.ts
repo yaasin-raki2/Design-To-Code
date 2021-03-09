@@ -10,6 +10,7 @@ import { newDesignRouter } from "./routes/designs/newDesign";
 import { updateDesignRouter } from "./routes/designs/updateDesign";
 import { showDesignRouter } from "./routes/designs/showDesign";
 import { indexDesignRouter } from "./routes/designs/indexDesign";
+import { deleteDesignRouter } from "./routes/designs/deleteDesign";
 
 import { newSubmitionRouter } from "./routes/submitions/newSubmition";
 import { updateSubmitionRouter } from "./routes/submitions/updateSubmition";
@@ -29,11 +30,17 @@ const db = mongoose.connection;
 
 app.use(json());
 
-app.use([newDesignRouter, updateDesignRouter, showDesignRouter, indexDesignRouter]);
-
 app.use([newCommentRouter, deleteCommentRouter, indexCommentRouter]);
 
 app.use([newLikeRouter, indexLikeOwnersRouter]);
+
+app.use([
+  newDesignRouter,
+  updateDesignRouter,
+  showDesignRouter,
+  indexDesignRouter,
+  deleteDesignRouter,
+]);
 
 app.use([
   newSubmitionRouter,
