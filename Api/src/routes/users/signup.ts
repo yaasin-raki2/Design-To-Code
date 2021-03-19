@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 import { BadRequestError } from "../../errors/bad-request-error";
 import { validateRequest } from "../../middlewares/validate-request";
-import { User } from "../../models/user";
+import { User, UserPayload } from "../../models/user";
 import { signupValidation } from "../../validations/users/signupValidation";
 
 const router = express.Router();
@@ -30,7 +30,7 @@ router.post(
         email: user.email,
         userName: user.userName,
         userType: user.userType,
-      },
+      } as UserPayload,
       process.env.JWT_KEY!
     );
 

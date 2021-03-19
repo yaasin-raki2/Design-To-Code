@@ -32,10 +32,9 @@ interface UserDoc extends mongoose.Document {
 }
 
 export interface UserPayload {
-  id: string;
+  id: ObjectId;
   userName: string;
   email: string;
-  password: string;
   userType: UserType;
 }
 

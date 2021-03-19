@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 import { validateRequest } from "../../middlewares/validate-request";
 import { BadRequestError } from "../../errors/bad-request-error";
-import { User } from "../../models/user";
+import { User, UserPayload } from "../../models/user";
 import { Password } from "../../services/services";
 import { signinValidation } from "../../validations/users/signinValidation";
 
@@ -34,7 +34,7 @@ router.post(
         email: existingUser.email,
         userName: existingUser.userName,
         userType: existingUser.userType,
-      },
+      } as UserPayload,
       process.env.JWT_KEY!
     );
 
