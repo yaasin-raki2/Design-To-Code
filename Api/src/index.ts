@@ -3,33 +3,17 @@ import mongoose from "mongoose";
 import { json } from "body-parser";
 import cookieSession from "cookie-session";
 import * as dotenv from "dotenv";
+
 import "express-async-errors";
 
 import { NotFoundError } from "./errors/not-found-error";
 import { errorHandler } from "./middlewares/error-handler";
 
-import { newDesignRouter } from "./routes/designs/newDesign";
-import { updateDesignRouter } from "./routes/designs/updateDesign";
-import { showDesignRouter } from "./routes/designs/showDesign";
-import { indexDesignRouter } from "./routes/designs/indexDesign";
-import { deleteDesignRouter } from "./routes/designs/deleteDesign";
-
-import { newSubmitionRouter } from "./routes/submitions/newSubmition";
-import { updateSubmitionRouter } from "./routes/submitions/updateSubmition";
-import { showSubmitionRouter } from "./routes/submitions/showSubmition";
-import { indexSubmitionRouter } from "./routes/submitions/indexSubmition";
-import { deleteSubmitionRouter } from "./routes/submitions/deleteSubmition";
-
-import { signinRouter } from "./routes/users/signin";
-import { signupRouter } from "./routes/users/signup";
-import { signoutRouter } from "./routes/users/signout";
-
-import { newCommentRouter } from "./routes/comments/newComment";
-import { deleteCommentRouter } from "./routes/comments/deleteComment";
-import { indexCommentRouter } from "./routes/comments/indexComment";
-
-import { newLikeRouter } from "./routes/likes/likeUnlike";
-import { indexLikeOwnersRouter } from "./routes/likes/indexLikeOwners";
+import { DesignRouters } from "./routes/designs";
+import { SubmitionRouters } from "./routes/submitions";
+import { UserRouters } from "./routes/users";
+import { CommentRouters } from "./routes/comments";
+import { LikeRouters } from "./routes/likes";
 
 const app = express();
 const db = mongoose.connection;
@@ -40,26 +24,12 @@ app.use(json());
 
 app.use(cookieSession({ signed: false }));
 
-app.use([signinRouter, signupRouter, signoutRouter]);
-
-app.use([newCommentRouter, deleteCommentRouter, indexCommentRouter]);
-
-app.use([newLikeRouter, indexLikeOwnersRouter]);
-
 app.use([
-  newDesignRouter,
-  updateDesignRouter,
-  showDesignRouter,
-  indexDesignRouter,
-  deleteDesignRouter,
-]);
-
-app.use([
-  newSubmitionRouter,
-  updateSubmitionRouter,
-  showSubmitionRouter,
-  indexSubmitionRouter,
-  deleteSubmitionRouter,
+  ...DesignRouters,
+  ...SubmitionRouters,
+  ...UserRouters,
+  ...CommentRouters,
+  ...LikeRouters,
 ]);
 
 app.all("*", async () => {
