@@ -10,21 +10,17 @@ export const designerHasAccess = async (
   res: Response,
   next: NextFunction
 ) => {
-  try {
-    const user = await User.findById(req.currentUser!.id);
+  const user = await User.findById(req.currentUser!.id);
 
-    if (!user) {
-      throw new NotFoundError();
-    }
+  if (!user) {
+    throw new NotFoundError();
+  }
 
-    if (user.id === process.env.ADMIN_ID) {
-      return next();
-    }
+  if (user.id === process.env.ADMIN_ID) {
+    return next();
+  }
 
-    if (user.banned || user.userType !== UserType.Designer) {
-      throw new NotAuthorizedError();
-    }
-  } catch (err) {
+  if (user.banned || user.userType !== UserType.Designer) {
     throw new NotAuthorizedError();
   }
 

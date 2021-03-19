@@ -32,6 +32,13 @@ router.patch(
       throw new NotFoundError();
     }
 
+    if (
+      req.currentUser!.id !== design.userId &&
+      req.currentUser!.id !== process.env.ADMIN_ID
+    ) {
+      throw new NotAuthorizedError();
+    }
+
     design.set({ ...req.body });
     await design.save();
 
