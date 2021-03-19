@@ -22,7 +22,7 @@ router.patch(
       throw new BadRequestError("You must provide a field to update");
     }
 
-    if (req.body.approved !== undefined && req.currentUser!.id !== process.env.ADMIN_ID) {
+    if (req.body.approved !== undefined) {
       throw new NotAuthorizedError();
     }
 
