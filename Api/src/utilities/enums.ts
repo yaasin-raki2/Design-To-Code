@@ -22,3 +22,8 @@ export enum Models {
   design = "design",
   submition = "submition",
 }
+
+export enum UserType {
+  Designer = "designer",
+  Coder = "coder",
+}

@@ -1,6 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import { json } from "body-parser";
+import cookieSession from "cookie-session";
+import * as dotenv from "dotenv";
 import "express-async-errors";
 
 import { NotFoundError } from "./errors/not-found-error";
@@ -18,6 +20,10 @@ import { showSubmitionRouter } from "./routes/submitions/showSubmition";
 import { indexSubmitionRouter } from "./routes/submitions/indexSubmition";
 import { deleteSubmitionRouter } from "./routes/submitions/deleteSubmition";
 
+import { signinRouter } from "./routes/users/signin";
+import { signupRouter } from "./routes/users/signup";
+import { signoutRouter } from "./routes/users/signout";
+
 import { newCommentRouter } from "./routes/comments/newComment";
 import { deleteCommentRouter } from "./routes/comments/deleteComment";
 import { indexCommentRouter } from "./routes/comments/indexComment";
@@ -28,7 +34,13 @@ import { indexLikeOwnersRouter } from "./routes/likes/indexLikeOwners";
 const app = express();
 const db = mongoose.connection;
 
+dotenv.config();
+
 app.use(json());
+
+app.use(cookieSession({ signed: false }));
+
+app.use([signinRouter, signupRouter, signoutRouter]);
 
 app.use([newCommentRouter, deleteCommentRouter, indexCommentRouter]);
 
@@ -56,10 +68,15 @@ app.all("*", async () => {
 
 app.use(errorHandler);
 
-mongoose.connect("mongodb://localhost/test", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  process.env.NODE_ENV === "production"
+    ? process.env.MONGO_URI!
+    : "mongodb://localhost:27017/test",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function () {
