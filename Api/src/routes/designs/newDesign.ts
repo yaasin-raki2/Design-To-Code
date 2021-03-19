@@ -4,7 +4,6 @@ import { Design } from "../../models/design";
 import { validateRequest } from "../../middlewares/validate-request";
 import { newDesignValidation } from "../../validations/designs/newDesignValidation";
 import { designerHasAccess } from "../../middlewares/designer-has-access";
-import { isAdmin } from "../../middlewares/is-admin";
 import { requireAuth } from "../../middlewares/require-auth";
 
 const router = express.Router();
@@ -19,6 +18,7 @@ router.post(
     const data = req.body;
 
     const design = Design.build({
+      userId: req.currentUser!.id,
       colorPalette: data.colorPalette,
       difficulty: data.difficulty,
       file: {

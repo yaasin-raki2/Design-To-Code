@@ -4,6 +4,7 @@ import { FileTypes, DifficultyLevels } from "../utilities/enums";
 import { SubmitionDoc } from "./submition";
 
 interface DesignAttrs {
+  userId: string;
   colorPalette: string[];
   difficulty: DifficultyLevels;
   image: string;
@@ -15,6 +16,7 @@ interface DesignAttrs {
 }
 
 export interface DesignDoc extends mongoose.Document {
+  userId: string;
   colorPalette: string[];
   difficulty: DifficultyLevels;
   image: string;
@@ -72,6 +74,10 @@ export interface DesignModel extends mongoose.Model<DesignDoc> {
 }
 
 const designSchema = new mongoose.Schema({
+  userId: {
+    required: true,
+    type: String,
+  },
   colorPalette: {
     required: true,
     type: [String],
