@@ -6,15 +6,17 @@ import { LikeUnlikeModel } from "../../utilities/likes/LikeUnlikeModel";
 import { LikeUnlikeReply } from "../../utilities/likes/LikeUnlikeReply";
 import { validateRequest } from "../../middlewares/validate-request";
 import { NotFoundError } from "../../errors/not-found-error";
+import { requireAuth } from "../../middlewares/require-auth";
 
 const router = express.Router();
 
 router.post(
   "/api/likes",
+  requireAuth,
   likeUnlikeValidation,
   validateRequest,
   async (req: Request, res: Response) => {
-    const data = req.body;
+    const data = { ...req.body, userId: req.currentUser!.id };
 
     let response: {} | undefined;
 
