@@ -14,7 +14,7 @@ import { SubmitionRouters } from "./routes/submitions";
 import { UserRouters } from "./routes/users";
 import { CommentRouters } from "./routes/comments";
 import { LikeRouters } from "./routes/likes";
-import { FollowersRouters } from "./routes/followers";
+import { FollowersRouters } from "./routes/follower";
 
 const app = express();
 const db = mongoose.connection;
