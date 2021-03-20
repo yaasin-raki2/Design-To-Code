@@ -1,12 +1,8 @@
-import { body } from "express-validator";
+import { body, param } from "express-validator";
 
 import { OSPlatforms } from "../../utilities/enums";
 
 export const newSubmitionValidation = [
-  body("userId")
-    .notEmpty()
-    .isString()
-    .withMessage("userId must be valid and a non empty string"),
   body("designName")
     .isString()
     .isLength({ min: 3, max: 15 })

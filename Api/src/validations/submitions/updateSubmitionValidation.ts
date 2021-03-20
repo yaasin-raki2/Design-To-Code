@@ -3,16 +3,6 @@ import { body } from "express-validator";
 import { OSPlatforms } from "../../utilities/enums";
 
 export const updateSubmitionValidation = [
-  body("userId")
-    .optional()
-    .notEmpty()
-    .isString()
-    .withMessage("userId must be valid and a non empty string"),
-  body("designName")
-    .optional()
-    .isString()
-    .isLength({ min: 3, max: 15 })
-    .withMessage("Design's name must be a string between 3 and 15 characters"),
   body("sourceCode")
     .optional()
     .isObject()

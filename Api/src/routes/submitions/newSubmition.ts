@@ -5,11 +5,15 @@ import { validateRequest } from "../../middlewares/validate-request";
 import { newSubmitionValidation } from "../../validations/submitions/newSubmitionValidation";
 import { Design } from "../../models/design";
 import { NotFoundError } from "../../errors/not-found-error";
+import { requireAuth } from "../../middlewares/require-auth";
+import { coderHasAccess } from "../../middlewares/coder-has-access";
 
 const router = express.Router();
 
 router.post(
   "/api/submitions",
+  requireAuth,
+  coderHasAccess,
   newSubmitionValidation,
   validateRequest,
   async (req: Request, res: Response) => {
@@ -20,7 +24,7 @@ router.post(
     if (!design) throw new NotFoundError();
 
     const submition = Submition.build({
-      userId: data.userId,
+      userId: req.currentUser!.id,
       designName: data.designName,
       image: data.image,
       sourceCode: {
