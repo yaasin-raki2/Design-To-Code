@@ -4,10 +4,6 @@ import { body } from "express-validator";
 import { Models } from "../../utilities/enums";
 
 export const newCommentValidation = [
-  body("userId")
-    .notEmpty()
-    .isString()
-    .withMessage("userId must be valid and a non empty string"),
   body("comment")
     .optional()
     .isString()

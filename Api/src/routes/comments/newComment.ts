@@ -7,15 +7,17 @@ import { CreateReply } from "../../utilities/comments/CreateReply";
 import { NotFoundError } from "../../errors/not-found-error";
 import { validateRequest } from "../../middlewares/validate-request";
 import { newCommentValidation } from "../../validations/comments/newCommentValidation";
+import { requireAuth } from "../../middlewares/require-auth";
 
 const router = express.Router();
 
 router.post(
   "/api/comments",
+  requireAuth,
   newCommentValidation,
   validateRequest,
   async (req: Request, res: Response) => {
-    const data = req.body;
+    const data = { ...req.body, userId: req.currentUser!.id };
 
     let response: DesignDoc | SubmitionDoc | undefined;
 

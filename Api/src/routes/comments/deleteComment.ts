@@ -5,17 +5,19 @@ import { DesignDoc } from "../../models/design";
 import { SubmitionDoc } from "../../models/submition";
 import { DeleteComment } from "../../utilities/comments/DeleteComment";
 import { DeleteReply } from "../../utilities/comments/DeleteReply";
-import { newCommentValidation } from "../../validations/comments/deleteCommentValidation";
+import { deleteCommentValidation } from "../../validations/comments/deleteCommentValidation";
 import { validateRequest } from "../../middlewares/validate-request";
+import { requireAuth } from "../../middlewares/require-auth";
 
 const router = express.Router();
 
 router.delete(
   "/api/comments",
-  newCommentValidation,
+  requireAuth,
+  deleteCommentValidation,
   validateRequest,
   async (req: Request, res: Response) => {
-    const data = req.body;
+    const data = { ...req.body, userId: req.currentUser!.id };
 
     let response: DesignDoc | SubmitionDoc | undefined;
 

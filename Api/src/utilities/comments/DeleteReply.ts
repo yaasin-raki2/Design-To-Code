@@ -4,6 +4,7 @@ import { Submition, SubmitionModel } from "../../models/submition";
 import { NotFoundError } from "../../errors/not-found-error";
 import { Design, DesignModel } from "../../models/design";
 import { Models } from "../enums";
+import { NotAuthorizedError } from "../../errors/not-authorized-error";
 
 export interface ReplyToDeleteData {
   userId: string;
@@ -39,6 +40,15 @@ export const DeleteReply = async (data: ReplyToDeleteData) => {
   ].replies?.repliesArray.findIndex((reply) => reply._id == replyId);
 
   if (replyIndex === -1) throw new NotFoundError();
+
+  if (
+    userId !==
+      document.comments.commentsArray[commentIndex].replies?.repliesArray[replyIndex!]
+        .userId &&
+    userId !== process.env.ADMIN_ID
+  ) {
+    throw new NotAuthorizedError();
+  }
 
   document.comments.commentsArray[commentIndex].replies?.repliesArray.splice(
     replyIndex!,

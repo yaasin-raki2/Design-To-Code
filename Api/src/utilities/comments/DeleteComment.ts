@@ -4,6 +4,7 @@ import { Submition, SubmitionModel } from "../../models/submition";
 import { NotFoundError } from "../../errors/not-found-error";
 import { Design, DesignModel } from "../../models/design";
 import { Models } from "../enums";
+import { NotAuthorizedError } from "../../errors/not-authorized-error";
 
 export interface CommentToDeleteData {
   userId: string;
@@ -32,6 +33,13 @@ export const DeleteComment = async (data: CommentToDeleteData) => {
   );
 
   if (commentIndex === -1) throw new NotFoundError();
+
+  if (
+    userId !== document.comments.commentsArray[commentIndex].userId &&
+    userId !== process.env.ADMIN_ID
+  ) {
+    throw new NotAuthorizedError();
+  }
 
   document.comments.commentsArray.splice(commentIndex, 1);
 

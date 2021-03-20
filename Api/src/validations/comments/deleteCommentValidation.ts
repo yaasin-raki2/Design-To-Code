@@ -3,11 +3,7 @@ import { body } from "express-validator";
 
 import { Models } from "../../utilities/enums";
 
-export const newCommentValidation = [
-  body("userId")
-    .notEmpty()
-    .isString()
-    .withMessage("userId must be valid and a non empty string"),
+export const deleteCommentValidation = [
   body("model")
     .custom((input) => Object.values(Models).includes(input))
     .withMessage("You must choose from 2 Models: design | submition"),
