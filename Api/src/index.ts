@@ -14,6 +14,7 @@ import { SubmitionRouters } from "./routes/submitions";
 import { UserRouters } from "./routes/users";
 import { CommentRouters } from "./routes/comments";
 import { LikeRouters } from "./routes/likes";
+import { FollowersRouters } from "./routes/followers";
 
 const app = express();
 const db = mongoose.connection;
@@ -30,6 +31,7 @@ app.use([
   ...UserRouters,
   ...CommentRouters,
   ...LikeRouters,
+  ...FollowersRouters,
 ]);
 
 app.all("*", async () => {

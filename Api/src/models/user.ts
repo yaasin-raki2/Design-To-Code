@@ -29,6 +29,14 @@ interface UserDoc extends mongoose.Document {
   userType: UserType;
   image?: string;
   banned?: boolean;
+  followers?: {
+    quantity: number;
+    followersArray: UserDoc[];
+  };
+  following?: {
+    quantity: number;
+    followingArray: UserDoc[];
+  };
 }
 
 export interface UserPayload {
@@ -65,6 +73,30 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       required: false,
       default: false,
+    },
+    followers: {
+      quantity: {
+        type: Number,
+        default: 0,
+      },
+      followersArray: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+      ],
+    },
+    following: {
+      quantity: {
+        type: Number,
+        default: 0,
+      },
+      followingArray: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+      ],
     },
   },
   {
