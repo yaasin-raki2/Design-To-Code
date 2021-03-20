@@ -5,6 +5,10 @@ export const updateUserValidation = [
   param("id")
     .custom((input: string) => mongoose.Types.ObjectId.isValid(input))
     .withMessage("You must provide a valid id"),
+  body("image")
+    .optional()
+    .isString()
+    .withMessage("Image field must be a string of chrachters"),
   body("userName")
     .optional()
     .isString()
