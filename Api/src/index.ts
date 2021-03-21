@@ -2,6 +2,9 @@ import express from "express";
 import mongoose from "mongoose";
 import { json } from "body-parser";
 import cookieSession from "cookie-session";
+import compression from "compression";
+import helmet from "helmet";
+
 import * as dotenv from "dotenv";
 
 import "express-async-errors";
@@ -16,10 +19,14 @@ import { CommentRouters } from "./routes/comments";
 import { LikeRouters } from "./routes/likes";
 import { FollowersRouters } from "./routes/follower";
 
-const app = express();
-const db = mongoose.connection;
+export const app = express();
+export const db = mongoose.connection;
 
 dotenv.config();
+
+app.use(compression());
+
+app.use(helmet());
 
 app.use(json());
 
@@ -58,5 +65,3 @@ db.once("open", function () {
 app.listen(4000, () => {
   console.log("Listening on Port 4000");
 });
-
-export { app };
