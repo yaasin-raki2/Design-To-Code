@@ -111,6 +111,10 @@ const userSchema = new mongoose.Schema(
         delete ret.__v;
       },
     },
+    timestamps: {
+      createdAt: true,
+      updatedAt: false,
+    },
   }
 );
 

@@ -73,121 +73,129 @@ export interface SubmitionModel extends mongoose.Model<SubmitionDoc> {
   build(attrs: SubmitionAttrs): SubmitionDoc;
 }
 
-const submitionSchema = new mongoose.Schema({
-  userId: {
-    required: true,
-    type: String,
-  },
-  image: {
-    required: true,
-    type: String,
-  },
-  designName: {
-    required: true,
-    type: String,
-  },
-  sourceCode: {
-    platform: {
-      required: true,
-      type: String,
-      enum: Object.values(OSPlatforms),
-    },
-    link: {
+const submitionSchema = new mongoose.Schema(
+  {
+    userId: {
       required: true,
       type: String,
     },
-  },
-  likes: {
-    quantity: {
-      type: Number,
-      default: 0,
+    image: {
+      required: true,
+      type: String,
     },
-    likesOwners: [
-      {
-        userId: String,
-        liked: {
-          type: Boolean,
-          default: false,
-        },
+    designName: {
+      required: true,
+      type: String,
+    },
+    sourceCode: {
+      platform: {
+        required: true,
+        type: String,
+        enum: Object.values(OSPlatforms),
       },
-    ],
-  },
-  comments: {
-    quantity: {
-      type: Number,
-      default: 0,
+      link: {
+        required: true,
+        type: String,
+      },
     },
-    commentsArray: [
-      {
-        userId: String,
-        comment: String,
-        likes: {
-          quantity: {
-            type: Number,
-            default: 0,
+    likes: {
+      quantity: {
+        type: Number,
+        default: 0,
+      },
+      likesOwners: [
+        {
+          userId: String,
+          liked: {
+            type: Boolean,
+            default: false,
           },
-          likesOwners: [
-            {
-              userId: String,
-              liked: {
-                type: Boolean,
-                default: false,
-              },
-            },
-          ],
         },
-        replies: {
-          quantity: {
-            type: Number,
-            default: 0,
-          },
-          repliesArray: [
-            {
-              userId: String,
-              reply: String,
-              likes: {
-                quantity: {
-                  type: Number,
-                  default: 0,
+      ],
+    },
+    comments: {
+      quantity: {
+        type: Number,
+        default: 0,
+      },
+      commentsArray: [
+        {
+          userId: String,
+          comment: String,
+          likes: {
+            quantity: {
+              type: Number,
+              default: 0,
+            },
+            likesOwners: [
+              {
+                userId: String,
+                liked: {
+                  type: Boolean,
+                  default: false,
                 },
-                likesOwners: [
-                  {
-                    userId: String,
-                    liked: {
-                      type: Boolean,
-                      default: false,
-                    },
-                  },
-                ],
               },
+            ],
+          },
+          replies: {
+            quantity: {
+              type: Number,
+              default: 0,
             },
-          ],
+            repliesArray: [
+              {
+                userId: String,
+                reply: String,
+                likes: {
+                  quantity: {
+                    type: Number,
+                    default: 0,
+                  },
+                  likesOwners: [
+                    {
+                      userId: String,
+                      liked: {
+                        type: Boolean,
+                        default: false,
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
         },
-      },
-    ],
-  },
-  views: {
-    quantity: {
-      type: Number,
-      default: 0,
+      ],
     },
-    viewsArray: [
-      {
-        userId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
-        },
-
-        quantity: {
-          type: Number,
-          default: 0,
-        },
-        dates: [Date],
-        _id: false,
+    views: {
+      quantity: {
+        type: Number,
+        default: 0,
       },
-    ],
+      viewsArray: [
+        {
+          userId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+          },
+
+          quantity: {
+            type: Number,
+            default: 0,
+          },
+          dates: [Date],
+          _id: false,
+        },
+      ],
+    },
   },
-});
+  {
+    timestamps: {
+      createdAt: true,
+      updatedAt: false,
+    },
+  }
+);
 
 submitionSchema.statics.build = (attrs: SubmitionAttrs) => {
   return new Submition(attrs);

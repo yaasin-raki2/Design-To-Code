@@ -83,146 +83,154 @@ export interface DesignModel extends mongoose.Model<DesignDoc> {
   build(attrs: DesignAttrs): DesignDoc;
 }
 
-const designSchema = new mongoose.Schema({
-  userId: {
-    required: true,
-    type: String,
-  },
-  colorPalette: {
-    required: true,
-    type: [String],
-  },
-  difficulty: {
-    required: true,
-    type: String,
-    enum: Object.values(DifficultyLevels),
-  },
-  image: {
-    required: true,
-    type: String,
-  },
-  name: {
-    required: true,
-    type: String,
-  },
-  file: {
-    typeOfFile: {
-      required: true,
-      type: String,
-      enum: Object.values(FileTypes),
-    },
-    link: {
+const designSchema = new mongoose.Schema(
+  {
+    userId: {
       required: true,
       type: String,
     },
-  },
-  likes: {
-    quantity: {
-      type: Number,
-      default: 0,
+    colorPalette: {
+      required: true,
+      type: [String],
     },
-    likesOwners: [
-      {
-        userId: String,
-        liked: {
-          type: Boolean,
-          default: false,
-        },
+    difficulty: {
+      required: true,
+      type: String,
+      enum: Object.values(DifficultyLevels),
+    },
+    image: {
+      required: true,
+      type: String,
+    },
+    name: {
+      required: true,
+      type: String,
+    },
+    file: {
+      typeOfFile: {
+        required: true,
+        type: String,
+        enum: Object.values(FileTypes),
       },
-    ],
-  },
-  comments: {
-    quantity: {
-      type: Number,
-      default: 0,
+      link: {
+        required: true,
+        type: String,
+      },
     },
-    commentsArray: [
-      {
-        userId: String,
-        comment: String,
-        likes: {
-          quantity: {
-            type: Number,
-            default: 0,
+    likes: {
+      quantity: {
+        type: Number,
+        default: 0,
+      },
+      likesOwners: [
+        {
+          userId: String,
+          liked: {
+            type: Boolean,
+            default: false,
           },
-          likesOwners: [
-            {
-              userId: String,
-              liked: {
-                type: Boolean,
-                default: false,
-              },
-            },
-          ],
         },
-        replies: {
-          quantity: {
-            type: Number,
-            default: 0,
-          },
-          repliesArray: [
-            {
-              userId: String,
-              reply: String,
-              likes: {
-                quantity: {
-                  type: Number,
-                  default: 0,
+      ],
+    },
+    comments: {
+      quantity: {
+        type: Number,
+        default: 0,
+      },
+      commentsArray: [
+        {
+          userId: String,
+          comment: String,
+          likes: {
+            quantity: {
+              type: Number,
+              default: 0,
+            },
+            likesOwners: [
+              {
+                userId: String,
+                liked: {
+                  type: Boolean,
+                  default: false,
                 },
-                likesOwners: [
-                  {
-                    userId: String,
-                    liked: {
-                      type: Boolean,
-                      default: false,
-                    },
-                  },
-                ],
               },
+            ],
+          },
+          replies: {
+            quantity: {
+              type: Number,
+              default: 0,
             },
-          ],
+            repliesArray: [
+              {
+                userId: String,
+                reply: String,
+                likes: {
+                  quantity: {
+                    type: Number,
+                    default: 0,
+                  },
+                  likesOwners: [
+                    {
+                      userId: String,
+                      liked: {
+                        type: Boolean,
+                        default: false,
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
         },
-      },
-    ],
-  },
-  submitions: {
-    quantity: {
-      type: Number,
-      default: 0,
+      ],
     },
-    submitionsArray: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Submition",
+    submitions: {
+      quantity: {
+        type: Number,
+        default: 0,
       },
-    ],
-  },
-  approved: {
-    type: Boolean,
-    default: false,
-  },
-  views: {
-    quantity: {
-      type: Number,
-      default: 0,
-    },
-    viewsArray: [
-      {
-        userId: {
+      submitionsArray: [
+        {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "User",
+          ref: "Submition",
         },
-
-        quantity: {
-          type: Number,
-          default: 0,
-        },
-        dates: [Date],
-        _id: false,
+      ],
+    },
+    approved: {
+      type: Boolean,
+      default: false,
+    },
+    views: {
+      quantity: {
+        type: Number,
+        default: 0,
       },
-    ],
+      viewsArray: [
+        {
+          userId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+          },
+
+          quantity: {
+            type: Number,
+            default: 0,
+          },
+          dates: [Date],
+          _id: false,
+        },
+      ],
+    },
   },
-});
+  {
+    timestamps: {
+      createdAt: true,
+      updatedAt: false,
+    },
+  }
+);
 
 designSchema.statics.build = (attrs: DesignAttrs) => {
   return new Design(attrs);
