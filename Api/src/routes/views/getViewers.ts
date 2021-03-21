@@ -30,6 +30,10 @@ router.get(
       .populate("views.viewsArray.userId")
       .select("views");
 
+    if (!views) {
+      throw new NotFoundError();
+    }
+
     res.send(views);
   }
 );
