@@ -57,6 +57,16 @@ export interface SubmitionDoc extends mongoose.Document {
       };
     }[];
   };
+  views: {
+    quantity: number;
+    viewsArray: [
+      {
+        userId: string;
+        quantity: number;
+        dates: Date[];
+      }
+    ];
+  };
 }
 
 export interface SubmitionModel extends mongoose.Model<SubmitionDoc> {
@@ -153,6 +163,27 @@ const submitionSchema = new mongoose.Schema({
             },
           ],
         },
+      },
+    ],
+  },
+  views: {
+    quantity: {
+      type: Number,
+      default: 0,
+    },
+    viewsArray: [
+      {
+        userId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+
+        quantity: {
+          type: Number,
+          default: 0,
+        },
+        dates: [Date],
+        _id: false,
       },
     ],
   },

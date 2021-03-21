@@ -67,6 +67,16 @@ export interface DesignDoc extends mongoose.Document {
     submitionsArray: SubmitionDoc[];
   };
   approved: boolean;
+  views: {
+    quantity: number;
+    viewsArray: [
+      {
+        userId: string;
+        quantity: number;
+        dates: Date[];
+      }
+    ];
+  };
 }
 
 export interface DesignModel extends mongoose.Model<DesignDoc> {
@@ -190,6 +200,27 @@ const designSchema = new mongoose.Schema({
   approved: {
     type: Boolean,
     default: false,
+  },
+  views: {
+    quantity: {
+      type: Number,
+      default: 0,
+    },
+    viewsArray: [
+      {
+        userId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+
+        quantity: {
+          type: Number,
+          default: 0,
+        },
+        dates: [Date],
+        _id: false,
+      },
+    ],
   },
 });
 
