@@ -3,5 +3,6 @@ declare namespace NodeJS {
     JWT_KEY: string;
     MONGO_URI: string;
     ADMIN_ID: string;
+    STRIPE_KEY: string;
   }
 }
