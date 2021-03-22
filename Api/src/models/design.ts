@@ -77,6 +77,12 @@ export interface DesignDoc extends mongoose.Document {
       }
     ];
   };
+  paid: boolean;
+  price: number;
+  purchasedBy: {
+    quantity: number;
+    buyers: string[];
+  };
 }
 
 export interface DesignModel extends mongoose.Model<DesignDoc> {
@@ -220,6 +226,29 @@ const designSchema = new mongoose.Schema(
           },
           dates: [Date],
           _id: false,
+        },
+      ],
+    },
+    paid: {
+      required: false,
+      type: Boolean,
+      default: false,
+    },
+    price: {
+      required: false,
+      type: Number,
+      default: 0,
+    },
+    purchasedBy: {
+      quantity: {
+        required: true,
+        type: Number,
+        default: 0,
+      },
+      buyers: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Submition",
         },
       ],
     },
