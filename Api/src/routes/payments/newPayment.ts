@@ -18,6 +18,10 @@ router.post("/api/payments/designs", requireAuth, async (req: Request, res: Resp
     throw new NotFoundError();
   }
 
+  if (!design.paid) {
+    throw new BadRequestError("Bro, This is Free ._.");
+  }
+
   // const charge = await stripe.charges.create({
   //   currency: "usd",
   //   amount: design.price * 100,
