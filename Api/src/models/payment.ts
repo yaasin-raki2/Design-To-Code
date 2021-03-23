@@ -1,18 +1,14 @@
 import mongoose from "mongoose";
 
 interface PaymentAttrs {
-  purchasing: string;
   purchaseId: string;
   price: number;
-  stripeId: string;
   userId: string;
 }
 
 export interface PaymentDoc extends mongoose.Document {
-  purchasing: string;
   purchaseId: string;
   price: number;
-  stripeId: string;
   userId: string;
   createdAt: Date;
 }
@@ -23,10 +19,6 @@ export interface PaymentModel extends mongoose.Model<PaymentDoc> {
 
 const paymentSchema = new mongoose.Schema(
   {
-    purchasing: {
-      required: true,
-      type: String,
-    },
     purchaseId: {
       required: true,
       type: String,
@@ -34,10 +26,6 @@ const paymentSchema = new mongoose.Schema(
     price: {
       required: true,
       type: Number,
-    },
-    stripeId: {
-      required: true,
-      type: String,
     },
     userId: {
       required: true,
