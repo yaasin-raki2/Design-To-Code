@@ -1,8 +1,8 @@
-import { Notification, NotificationDoc } from "../../models/notification";
+import { Notification, NotificationAttrs } from "../../models/notification";
 import { NotFoundError } from "../../errors/not-found-error";
 import { User } from "../../models/user";
 
-export const sendNotification = async (args: NotificationDoc) => {
+export const sendNotification = async (args: NotificationAttrs) => {
   const notification = await Notification.build(args);
 
   const user = await User.findById(args.userId);

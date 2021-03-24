@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-interface NotificationAttrs {
+export interface NotificationAttrs {
   message: string;
   image: string;
   link: string;

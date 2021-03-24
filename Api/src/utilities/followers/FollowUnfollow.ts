@@ -2,6 +2,8 @@ import { NotFoundError } from "../../errors/not-found-error";
 import { User } from "../../models/user";
 
 export const FollowUnfollow = async (userId: string, userToFollowId: string) => {
+  let button: string = "";
+
   const userToFollow = await User.findById(userToFollowId);
 
   if (!userToFollow) throw new NotFoundError();
@@ -14,11 +16,13 @@ export const FollowUnfollow = async (userId: string, userToFollowId: string) => 
       $pull: { "followers.followersArray": userId },
       $inc: { "followers.quantity": -1 },
     });
+    button = "unfollow";
   } else if (!exists) {
     await userToFollow.updateOne({
       $addToSet: { "followers.followersArray": userId },
       $inc: { "followers.quantity": 1 },
     });
+    button = "follow";
   }
 
   await userToFollow.save();
@@ -44,5 +48,5 @@ export const FollowUnfollow = async (userId: string, userToFollowId: string) => 
 
   await user.save();
 
-  return { user, userToFollow };
+  return { user, userToFollow, button };
 };
