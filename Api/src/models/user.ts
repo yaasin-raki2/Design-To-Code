@@ -37,6 +37,14 @@ interface UserDoc extends mongoose.Document {
     quantity: number;
     followingArray: UserDoc[];
   };
+  seenNotifications: {
+    quantity: number;
+    notifications: string[];
+  };
+  newNotifications: {
+    quantity: number;
+    notifications: string[];
+  };
 }
 
 export interface UserPayload {
@@ -95,6 +103,30 @@ const userSchema = new mongoose.Schema(
         {
           type: mongoose.Schema.Types.ObjectId,
           ref: "User",
+        },
+      ],
+    },
+    seenNotifications: {
+      quantity: {
+        type: Number,
+        default: 0,
+      },
+      notifications: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Notification",
+        },
+      ],
+    },
+    newNotifications: {
+      quantity: {
+        type: Number,
+        default: 0,
+      },
+      notifications: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Notification",
         },
       ],
     },
