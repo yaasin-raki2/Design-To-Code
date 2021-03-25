@@ -20,6 +20,7 @@ import { LikeRouters } from "./routes/likes";
 import { FollowersRouters } from "./routes/follower";
 import { ViewsRouters } from "./routes/views";
 import { PaymentsRouters } from "./routes/payments";
+import { NotificationsRouter } from "./routes/notifications";
 
 export const app = express();
 export const db = mongoose.connection;
@@ -43,6 +44,7 @@ app.use([
   ...FollowersRouters,
   ...ViewsRouters,
   ...PaymentsRouters,
+  ...NotificationsRouter,
 ]);
 
 app.all("*", async () => {
