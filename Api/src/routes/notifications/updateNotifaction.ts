@@ -1,11 +1,10 @@
 import express, { Request, Response } from "express";
+
 import { NotAuthorizedError } from "../../errors/not-authorized-error";
 import { NotFoundError } from "../../errors/not-found-error";
-
 import { requireAuth } from "../../middlewares/require-auth";
 import { validateRequest } from "../../middlewares/validate-request";
 import { Notification } from "../../models/notification";
-import { User } from "../../models/user";
 import { showValidation } from "../../validations/general/showValidation";
 
 const router = express.Router();
@@ -22,20 +21,9 @@ router.patch(
 
     if (req.currentUser!.id !== notification.userId) throw new NotAuthorizedError();
 
-    const user = await User.findById(notification.userId);
+    notification.seen = true;
 
-    if (!user) throw new NotFoundError();
-
-    await user.updateOne({
-      $pull: { "newNotifications.notifications": notification._id },
-      $push: { "seenNotifications.notifications": notification._id },
-      $inc: {
-        "newNotifications.quantity": -1,
-        "seenNotifications.quantity": 1,
-      },
-    });
-
-    res.send(user);
+    res.send(notification);
   }
 );
 

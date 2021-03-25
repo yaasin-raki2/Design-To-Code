@@ -12,6 +12,7 @@ export interface NotificationDoc extends mongoose.Document {
   image: string;
   link: string;
   userId: string;
+  seen: boolean;
   createdAt: Date;
 }
 
@@ -36,6 +37,11 @@ const notificationSchema = new mongoose.Schema(
     userId: {
       required: true,
       type: String,
+    },
+    seen: {
+      required: false,
+      type: Boolean,
+      default: false,
     },
   },
   {

@@ -37,14 +37,7 @@ interface UserDoc extends mongoose.Document {
     quantity: number;
     followingArray: UserDoc[];
   };
-  seenNotifications: {
-    quantity: number;
-    notifications: string[];
-  };
-  newNotifications: {
-    quantity: number;
-    notifications: string[];
-  };
+  notifications: string[];
 }
 
 export interface UserPayload {
@@ -106,30 +99,12 @@ const userSchema = new mongoose.Schema(
         },
       ],
     },
-    seenNotifications: {
-      quantity: {
-        type: Number,
-        default: 0,
+    notifications: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Notification",
       },
-      notifications: [
-        {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Notification",
-        },
-      ],
-    },
-    newNotifications: {
-      quantity: {
-        type: Number,
-        default: 0,
-      },
-      notifications: [
-        {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Notification",
-        },
-      ],
-    },
+    ],
   },
   {
     // When sending the user as Json back

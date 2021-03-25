@@ -11,7 +11,6 @@ export const sendNotification = async (args: NotificationAttrs) => {
 
   await user.updateOne({
     $push: { "newNotifications.notifications": notification._id },
-    $inc: { "newNotifications.quantity": 1 },
   });
 
   await notification.save();
