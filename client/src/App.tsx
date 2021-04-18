@@ -1,23 +1,26 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
 
-import NavBar from "./components/nav-bar";
-import Home from "./pages/home";
-import Profile from "./pages/profile";
-import ProtectedRoute from "./auth/protected-route";
-
-const App: React.FC = () => {
+function App() {
   return (
-    <div>
-      <NavBar />
-      <div>
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <ProtectedRoute path="/profile" component={Profile} />
-        </Switch>
-      </div>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.tsx</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
-};
+}
 
 export default App;
