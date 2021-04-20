@@ -5,16 +5,15 @@ import { StyledButton } from "./Button.styles";
 
 interface ButtonProps {
   to: LinkProps["to"];
+  width?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, to }) => {
+const Button: React.FC<ButtonProps> = ({ children, to, width }) => {
   return (
     <div>
-      <StyledButton>
-        <Link to={to} color="#fff">
-          {children}
-        </Link>
-      </StyledButton>
+      <Link to={to}>
+        <StyledButton width={width}>Sign Up</StyledButton>
+      </Link>
     </div>
   );
 };

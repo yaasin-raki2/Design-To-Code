@@ -12,7 +12,7 @@ const Header: React.FC = () => {
       <StyledLink to="/" color="#0E70F3">
         Log In
       </StyledLink>
-      <Button to="/">Sign Up</Button>
+      <Button to="/signup">Sign Up</Button>
     </Wrapper>
   );
 };
