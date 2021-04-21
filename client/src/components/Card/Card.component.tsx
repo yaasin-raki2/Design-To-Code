@@ -11,7 +11,9 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ width, height, color, children }) => {
   return (
     <div>
-      <StyledCard>{children}</StyledCard>
+      <StyledCard width={width} height={height} color={color}>
+        {children}
+      </StyledCard>
     </div>
   );
 };
