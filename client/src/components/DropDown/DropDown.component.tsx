@@ -3,18 +3,13 @@ import React from "react";
 import { DropDownWrapper } from "./DropDown.styles";
 
 interface DropDownProps {
-  userCredentials: { userType: string };
-  setCredentials: (args: any) => void;
+  dropDown: string;
+  setDropDown: (arg0: string) => void;
   list: string[];
   width?: string;
 }
 
-const DropDown: React.FC<DropDownProps> = ({
-  userCredentials,
-  setCredentials,
-  list,
-  width,
-}) => {
+const DropDown: React.FC<DropDownProps> = ({ dropDown, setDropDown, list, width }) => {
   const capitalizeWords = (string: string) => {
     return string.replace(/(?:^|\s)\S/g, (word: string) => {
       return word.toUpperCase();
@@ -23,11 +18,7 @@ const DropDown: React.FC<DropDownProps> = ({
 
   return (
     <DropDownWrapper width={width}>
-      <select
-        value={userCredentials.userType}
-        onChange={(e) => setCredentials({ ...userCredentials, userType: e.target.value })}
-        required
-      >
+      <select value={dropDown} onChange={(e) => setDropDown(e.target.value)} required>
         <option value="">Select One</option>
         {list.map((item) => (
           <option key={item} value={item}>

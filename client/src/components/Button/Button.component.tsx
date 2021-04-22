@@ -6,13 +6,16 @@ import { StyledButton } from "./Button.styles";
 interface ButtonProps {
   to: LinkProps["to"];
   width?: string;
+  onClick?: (arg: any) => void;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, to, width }) => {
+const Button: React.FC<ButtonProps> = ({ children, to, width, onClick }) => {
   return (
     <div>
       <Link to={to}>
-        <StyledButton width={width}>Sign Up</StyledButton>
+        <StyledButton onClick={onClick} width={width}>
+          {children}
+        </StyledButton>
       </Link>
     </div>
   );

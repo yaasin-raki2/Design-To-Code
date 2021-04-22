@@ -1,5 +1,6 @@
 import { ChangeEvent, FC, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import Button from "../../components/Button/Button.component";
 import Card from "../../components/Card/Card.component";
@@ -15,6 +16,8 @@ import {
 } from "./SignUp.styles";
 
 const SignUpPage: FC = () => {
+  const [dropDown, setDropDown] = useState("");
+
   const [userCredentials, setCredentials] = useState({
     userName: "",
     email: "",
@@ -22,12 +25,16 @@ const SignUpPage: FC = () => {
     userType: "",
   });
 
+  if (userCredentials.userType !== dropDown) {
+    setCredentials({ ...userCredentials, userType: dropDown });
+  }
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
     setCredentials({ ...userCredentials, [name]: value });
   };
 
-  console.log(userCredentials);
+  const handleSubmit = async () => {};
 
   return (
     <Wrapper>
@@ -49,8 +56,8 @@ const SignUpPage: FC = () => {
               required
             />
             <DropDown
-              userCredentials={userCredentials}
-              setCredentials={setCredentials}
+              dropDown={dropDown}
+              setDropDown={setDropDown}
               list={["designer", "coder"]}
             />
           </FirstInputsWrapper>
@@ -70,7 +77,7 @@ const SignUpPage: FC = () => {
             label="Password"
             required
           />
-          <Button to="/signup" width="450px">
+          <Button to="/signup" width="450px" onClick={handleSubmit}>
             Sign Up
           </Button>
         </InputsWrapper>

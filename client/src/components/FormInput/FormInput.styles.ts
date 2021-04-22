@@ -11,6 +11,7 @@ export const Group = styled.div`
 `;
 
 export const FormInputContainer = styled.input`
+  font-size: 20px;
   width: 450px;
   height: 65.2px;
   border: none;
@@ -18,7 +19,7 @@ export const FormInputContainer = styled.input`
   background: #f4f4f4;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
-  padding-left: 50px;
+  padding-left: 30px;
   &:focus ~ label {
     ${shrinkLabelStyles}
   }

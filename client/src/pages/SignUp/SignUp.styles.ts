@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   height: calc(100vh - 100px);
 `;
 
-export const InputsWrapper = styled.div`
+export const InputsWrapper = styled.form`
   margin-top: -50px;
   height: 350px;
   display: flex;
