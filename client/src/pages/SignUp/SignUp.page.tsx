@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button.component";
 import Card from "../../components/Card/Card.component";
 import FormInput from "../../components/FormInput/FormInput.component";
+import DropDown from "../../components/DropDown/DropDown.component";
 import {
   Wrapper,
   BigText,
-  DropDown,
   SmallText,
   TextWrapper,
   InputsWrapper,
@@ -15,7 +15,8 @@ import {
 } from "./SignUp.styles";
 
 const SignUpPage: FC = () => {
-  const [dropDown, setDropdown] = useState<string>("");
+  const [dropDown, setDropDown] = useState<string>("");
+  console.log(dropDown);
   return (
     <Wrapper>
       <Card width="550px">
@@ -35,13 +36,11 @@ const SignUpPage: FC = () => {
               label="Username"
               required
             />
-            <DropDown>
-              <select value={dropDown} onChange={(e) => setDropdown(e.target.value)}>
-                <option value="">Select One</option>
-                <option value="designer">Designer</option>
-                <option value="coder">Coder</option>
-              </select>
-            </DropDown>
+            <DropDown
+              dropDown={dropDown}
+              setDropDown={setDropDown}
+              list={["designer", "coder"]}
+            />
           </FirstInputsWrapper>
           <FormInput
             name="email"
