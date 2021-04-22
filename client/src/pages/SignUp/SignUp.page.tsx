@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Button from "../../components/Button/Button.component";
@@ -15,8 +15,20 @@ import {
 } from "./SignUp.styles";
 
 const SignUpPage: FC = () => {
-  const [dropDown, setDropDown] = useState<string>("");
-  console.log(dropDown);
+  const [userCredentials, setCredentials] = useState({
+    userName: "",
+    email: "",
+    password: "",
+    userType: "",
+  });
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = event.target;
+    setCredentials({ ...userCredentials, [name]: value });
+  };
+
+  console.log(userCredentials);
+
   return (
     <Wrapper>
       <Card width="550px">
@@ -29,32 +41,32 @@ const SignUpPage: FC = () => {
         <InputsWrapper>
           <FirstInputsWrapper>
             <FormInput
-              name="name"
+              name="userName"
               type="text"
-              value=""
-              // handleChange={handleChange}
+              value={userCredentials.userName}
+              handleChange={handleChange}
               label="Username"
               required
             />
             <DropDown
-              dropDown={dropDown}
-              setDropDown={setDropDown}
+              userCredentials={userCredentials}
+              setCredentials={setCredentials}
               list={["designer", "coder"]}
             />
           </FirstInputsWrapper>
           <FormInput
             name="email"
             type="email"
-            value=""
-            // handleChange={handleChange}
+            value={userCredentials.email}
+            handleChange={handleChange}
             label="Email"
             required
           />
           <FormInput
             name="password"
             type="password"
-            value=""
-            // handleChange={handleChange}
+            value={userCredentials.password}
+            handleChange={handleChange}
             label="Password"
             required
           />
