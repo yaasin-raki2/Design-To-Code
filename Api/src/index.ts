@@ -4,6 +4,7 @@ import { json } from "body-parser";
 import cookieSession from "cookie-session";
 import compression from "compression";
 import helmet from "helmet";
+import cors from "cors";
 
 import * as dotenv from "dotenv";
 
@@ -26,6 +27,8 @@ export const app = express();
 export const db = mongoose.connection;
 
 dotenv.config();
+
+app.use(cors());
 
 app.use(compression());
 
