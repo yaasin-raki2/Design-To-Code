@@ -1,11 +1,11 @@
 import { ChangeEvent, FC, useState } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { Link, useHistory } from "react-router-dom";
 
 import Button from "../../components/Button/Button.component";
 import Card from "../../components/Card/Card.component";
 import FormInput from "../../components/FormInput/FormInput.component";
 import DropDown from "../../components/DropDown/DropDown.component";
+import useRequest from "../../hooks/useRequest";
 import {
   Wrapper,
   BigText,
@@ -25,6 +25,15 @@ const SignUpPage: FC = () => {
     userType: "",
   });
 
+  let history = useHistory();
+
+  const { doRequest, errors } = useRequest({
+    url: "http://localhost:4040/api/users/signup",
+    method: "post",
+    body: userCredentials,
+    onSuccess: (res) => console.log(res),
+  });
+
   if (userCredentials.userType !== dropDown) {
     setCredentials({ ...userCredentials, userType: dropDown });
   }
@@ -33,8 +42,6 @@ const SignUpPage: FC = () => {
     const { value, name } = event.target;
     setCredentials({ ...userCredentials, [name]: value });
   };
-
-  const handleSubmit = async () => {};
 
   return (
     <Wrapper>
@@ -47,37 +54,49 @@ const SignUpPage: FC = () => {
         </TextWrapper>
         <InputsWrapper>
           <FirstInputsWrapper>
+            <div>
+              <FormInput
+                name="userName"
+                type="text"
+                value={userCredentials.userName}
+                handleChange={handleChange}
+                label="Username"
+                required
+              />
+              <h6>{errors?.userName}</h6>
+            </div>
+            <div>
+              <DropDown
+                dropDown={dropDown}
+                setDropDown={setDropDown}
+                list={["designer", "coder"]}
+              />
+              <h6>{errors?.userType}</h6>
+            </div>
+          </FirstInputsWrapper>
+          <div>
             <FormInput
-              name="userName"
-              type="text"
-              value={userCredentials.userName}
+              name="email"
+              type="email"
+              value={userCredentials.email}
               handleChange={handleChange}
-              label="Username"
+              label="Email"
               required
             />
-            <DropDown
-              dropDown={dropDown}
-              setDropDown={setDropDown}
-              list={["designer", "coder"]}
+            <h6>{errors?.email}</h6>
+          </div>
+          <div>
+            <FormInput
+              name="password"
+              type="password"
+              value={userCredentials.password}
+              handleChange={handleChange}
+              label="Password"
+              required
             />
-          </FirstInputsWrapper>
-          <FormInput
-            name="email"
-            type="email"
-            value={userCredentials.email}
-            handleChange={handleChange}
-            label="Email"
-            required
-          />
-          <FormInput
-            name="password"
-            type="password"
-            value={userCredentials.password}
-            handleChange={handleChange}
-            label="Password"
-            required
-          />
-          <Button to="/signup" width="450px" onClick={handleSubmit}>
+            <h6>{errors?.password}</h6>
+          </div>
+          <Button to="/signup" width="450px" onClick={doRequest}>
             Sign Up
           </Button>
         </InputsWrapper>

@@ -13,6 +13,17 @@ export const InputsWrapper = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  div:not(:nth-child(1)) {
+    position: relative;
+
+    h6 {
+      color: red;
+      font-weight: 300;
+      position: absolute;
+      top: 60%;
+    }
+  }
 `;
 
 export const BigText = styled.h1`
@@ -43,8 +54,27 @@ export const TextWrapper = styled.div`
 export const FirstInputsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  position: relative;
 
   input[type="text"] {
     width: 250px;
+  }
+
+  h6 {
+    color: red;
+    font-weight: 300;
+    position: absolute;
+    top: 60%;
+  }
+
+  div:nth-child(2) {
+    h6 {
+      color: blue;
+      color: red;
+      font-weight: 300;
+      position: absolute;
+      top: -120%;
+      left: 10%;
+    }
   }
 `;
