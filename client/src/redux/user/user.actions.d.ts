@@ -3,12 +3,6 @@ import { UserPayloadTD } from "./user.payload";
 
 export interface SignUpStartAction {
   type: UserActionTypes.SIGN_UP_START;
-  payload: {
-    userName: string;
-    email: string;
-    password: string;
-    userType: string;
-  };
 }
 
 export interface SignUpFailureAction {
@@ -23,10 +17,6 @@ export interface SignUpSuccessAction {
 
 export interface LogInStartAction {
   type: UserActionTypes.LOG_IN_START;
-  payload: {
-    email: string;
-    password: string;
-  };
 }
 
 export interface LogInFailureAction {
@@ -38,3 +28,11 @@ export interface LogInSuccessAction {
   type: UserActionTypes.LOG_IN_SUCCESS;
   payload: UserPayloadTD;
 }
+
+export type Action =
+  | SignUpStartAction
+  | SignUpFailureAction
+  | SignUpSuccessAction
+  | LogInStartAction
+  | LogInFailureAction
+  | LogInSuccessAction;
