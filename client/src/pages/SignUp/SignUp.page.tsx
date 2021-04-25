@@ -1,11 +1,10 @@
 import { ChangeEvent, FC, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Button from "../../components/Button/Button.component";
 import Card from "../../components/Card/Card.component";
 import FormInput from "../../components/FormInput/FormInput.component";
 import DropDown from "../../components/DropDown/DropDown.component";
-import useRequest from "../../hooks/useRequest";
 import {
   Wrapper,
   BigText,
@@ -14,8 +13,14 @@ import {
   InputsWrapper,
   FirstInputsWrapper,
 } from "./SignUp.styles";
+import { useActions } from "../../hooks/useActions";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 const SignUpPage: FC = () => {
+  const { signUp } = useActions();
+
+  const errors = useTypedSelector((state) => state.user.errors);
+
   const [dropDown, setDropDown] = useState("");
 
   const [userCredentials, setCredentials] = useState({
@@ -25,15 +30,6 @@ const SignUpPage: FC = () => {
     userType: "",
   });
 
-  let history = useHistory();
-
-  const { doRequest, errors } = useRequest({
-    url: "http://localhost:4040/api/users/signup",
-    method: "post",
-    body: userCredentials,
-    onSuccess: (res) => console.log(res),
-  });
-
   if (userCredentials.userType !== dropDown) {
     setCredentials({ ...userCredentials, userType: dropDown });
   }
@@ -41,6 +37,10 @@ const SignUpPage: FC = () => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
     setCredentials({ ...userCredentials, [name]: value });
+  };
+
+  const handleSubmit = () => {
+    signUp(userCredentials);
   };
 
   return (
@@ -96,7 +96,7 @@ const SignUpPage: FC = () => {
             />
             <h6>{errors?.password}</h6>
           </div>
-          <Button to="/signup" width="450px" onClick={doRequest}>
+          <Button to="/signup" width="450px" onClick={handleSubmit}>
             Sign Up
           </Button>
         </InputsWrapper>
