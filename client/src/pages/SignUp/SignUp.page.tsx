@@ -1,7 +1,7 @@
-import { ChangeEvent, FC, useEffect, useState } from "react";
+import { ChangeEvent, FC, FormEvent, useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-import LinkButton from "../../components/LinkButton/LinkButton.component";
+import Button from "../../components/Button/Button.component";
 import Card from "../../components/Card/Card.component";
 import FormInput from "../../components/FormInput/FormInput.component";
 import DropDown from "../../components/DropDown/DropDown.component";
@@ -39,7 +39,8 @@ const SignUpPage: FC = () => {
     setCredentials({ ...userCredentials, [name]: value });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
     signUp(userCredentials);
   };
 
@@ -60,7 +61,7 @@ const SignUpPage: FC = () => {
             Already have an account ? <Link to="/login">Log In</Link>
           </SmallText>
         </TextWrapper>
-        <InputsWrapper>
+        <InputsWrapper onSubmit={handleSubmit}>
           <FirstInputsWrapper>
             <div>
               <FormInput
@@ -104,9 +105,7 @@ const SignUpPage: FC = () => {
             />
             <h6>{errors?.password}</h6>
           </div>
-          <LinkButton to="/signup" width="450px" onClick={handleSubmit}>
-            Sign Up
-          </LinkButton>
+          <Button width="450px">Sign Up</Button>
         </InputsWrapper>
       </Card>
     </Wrapper>

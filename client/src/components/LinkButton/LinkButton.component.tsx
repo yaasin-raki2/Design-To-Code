@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, LinkProps } from "react-router-dom";
 
-import { StyledButton } from "./LinkButton.styles";
+import { StyledButton } from "../Button/Button.styles";
 
 interface ButtonProps {
   to: LinkProps["to"];
