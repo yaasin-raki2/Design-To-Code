@@ -57,7 +57,7 @@ export const login = ({ email, password }: LogInInput) => {
       type: UserActionTypes.LOG_IN_START,
     });
     try {
-      const { data } = await axios.post("http://localhost:4040/api/users/login", {
+      const { data } = await axios.post("http://localhost:4040/api/users/signin", {
         email,
         password,
       });

@@ -23,7 +23,7 @@ const userReducer = (state: UserState = initialState, action: Action) => {
     case UserActionTypes.LOG_IN_SUCCESS:
       return {
         ...state,
-        currentUser: null,
+        currentUser: action.payload,
         errors: null,
       };
     case UserActionTypes.SIGN_UP_FAILURE:
