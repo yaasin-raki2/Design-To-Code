@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Wrapper, StyledLink } from "./Header.styles";
-import Button from "../Button/Button.component";
+import LinkButton from "../LinkButton/LinkButton.component";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 const Header: React.FC = () => {
@@ -17,9 +17,9 @@ const Header: React.FC = () => {
         </StyledLink>
       )}
       {currentUser ? (
-        <Button to="/signout">Sign Out</Button>
+        <LinkButton to="/signout">Sign Out</LinkButton>
       ) : (
-        <Button to="/signup">Sign Up</Button>
+        <LinkButton to="/signup">Sign Up</LinkButton>
       )}
     </Wrapper>
   );

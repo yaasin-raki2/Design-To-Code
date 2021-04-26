@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-import Button from "../../components/Button/Button.component";
+import LinkButton from "../../components/LinkButton/LinkButton.component";
 import Card from "../../components/Card/Card.component";
 import FormInput from "../../components/FormInput/FormInput.component";
 import DropDown from "../../components/DropDown/DropDown.component";
@@ -104,9 +104,9 @@ const SignUpPage: FC = () => {
             />
             <h6>{errors?.password}</h6>
           </div>
-          <Button to="/signup" width="450px" onClick={handleSubmit}>
+          <LinkButton to="/signup" width="450px" onClick={handleSubmit}>
             Sign Up
-          </Button>
+          </LinkButton>
         </InputsWrapper>
       </Card>
     </Wrapper>
