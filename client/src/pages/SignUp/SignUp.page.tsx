@@ -1,5 +1,5 @@
-import { ChangeEvent, FC, useState } from "react";
-import { Link } from "react-router-dom";
+import { ChangeEvent, FC, useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 
 import Button from "../../components/Button/Button.component";
 import Card from "../../components/Card/Card.component";
@@ -19,7 +19,7 @@ import { useTypedSelector } from "../../hooks/useTypedSelector";
 const SignUpPage: FC = () => {
   const { signUp } = useActions();
 
-  const errors = useTypedSelector((state) => state.user.errors);
+  const { currentUser, errors } = useTypedSelector((state) => state.user);
 
   const [dropDown, setDropDown] = useState("");
 
@@ -39,9 +39,17 @@ const SignUpPage: FC = () => {
     setCredentials({ ...userCredentials, [name]: value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     signUp(userCredentials);
   };
+
+  const history = useHistory();
+
+  useEffect(() => {
+    if (currentUser && !errors) {
+      history.push("/");
+    }
+  }, [currentUser, errors, history]);
 
   return (
     <Wrapper>
@@ -49,7 +57,7 @@ const SignUpPage: FC = () => {
         <TextWrapper>
           <BigText>Create Account</BigText>
           <SmallText>
-            Already have an account ? <Link to="/signup">Log In</Link>
+            Already have an account ? <Link to="/login">Log In</Link>
           </SmallText>
         </TextWrapper>
         <InputsWrapper>
