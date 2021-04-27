@@ -18,6 +18,7 @@ const Header: React.FC = () => {
       <StyledLink to="/">Home</StyledLink>
       <StyledLink to="/">Designs</StyledLink>
       <StyledLink to="/">Dashboard</StyledLink>
+      <StyledLink to="/">profile</StyledLink>
       {!currentUser && (
         <StyledLink to="/login" color="#0E70F3">
           Log In
