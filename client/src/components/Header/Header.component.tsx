@@ -2,9 +2,17 @@ import React from "react";
 
 import { Wrapper, StyledLink, Button } from "./Header.styles";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { useActions } from "../../hooks/useActions";
 
 const Header: React.FC = () => {
+  const { signout } = useActions();
+
   const currentUser = useTypedSelector((state) => state.user.currentUser);
+
+  const onClick = () => {
+    signout();
+  };
+
   return (
     <Wrapper>
       <StyledLink to="/">Home</StyledLink>
@@ -16,7 +24,9 @@ const Header: React.FC = () => {
         </StyledLink>
       )}
       {currentUser ? (
-        <Button to="/signout">Sign Out</Button>
+        <Button to="/" onClick={onClick}>
+          Sign Out
+        </Button>
       ) : (
         <Button to="/signup">Sign Up</Button>
       )}

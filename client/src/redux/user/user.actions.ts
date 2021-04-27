@@ -2,7 +2,7 @@ import { Dispatch } from "redux";
 import axios from "axios";
 
 import { UserActionTypes } from "./user.types.d";
-import { Action } from "./user.actions.d";
+import { Action, SignOut } from "./user.actions.d";
 
 interface SignUpInput {
   userName: string;
@@ -83,3 +83,7 @@ export const login = ({ email, password }: LogInInput) => {
     }
   };
 };
+
+export const signout = (): SignOut => ({
+  type: UserActionTypes.SIGN_OUT,
+});

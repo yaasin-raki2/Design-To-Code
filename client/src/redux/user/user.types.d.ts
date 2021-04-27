@@ -5,4 +5,5 @@ export enum UserActionTypes {
   LOG_IN_START = "log-in-start",
   LOG_IN_FAILURE = "log-in-failure",
   LOG_IN_SUCCESS = "log-in-success",
+  SIGN_OUT = "sign-out",
 }

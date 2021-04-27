@@ -29,10 +29,15 @@ export interface LogInSuccessAction {
   payload: UserPayloadTD;
 }
 
+export interface SignOut {
+  type: UserActionTypes.SIGN_OUT;
+}
+
 export type Action =
   | SignUpStartAction
   | SignUpFailureAction
   | SignUpSuccessAction
   | LogInStartAction
   | LogInFailureAction
-  | LogInSuccessAction;
+  | LogInSuccessAction
+  | SignOut;
