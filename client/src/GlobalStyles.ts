@@ -7,13 +7,9 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: "Poppins";
-    margin: 0 240px;
+    margin: 0 auto;
     height: 100%;
-
-    @media screen and (max-width: 1550px) {
-      margin: 0px;
-      font-size: 20px
-    }
+    max-width: 1440px;
   }
 
   a {

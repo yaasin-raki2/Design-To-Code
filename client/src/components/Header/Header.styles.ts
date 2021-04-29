@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   height: 100px;
   align-items: center;
-  width: 800px;
   margin: auto;
 `;
 
