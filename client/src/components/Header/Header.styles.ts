@@ -16,6 +16,8 @@ export const StyledLink = styled(Link)`
 
 export const Button = styled(Link)`
   background-color: ${({ theme }) => theme.primary};
+  width: 93px;
+  height: 39px;
   padding: 10px 15px;
   border-radius: 10px;
   transition: 0.5s;
@@ -24,7 +26,9 @@ export const Button = styled(Link)`
   cursor: pointer;
   outline: none;
   font-size: 16px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   :hover {
     filter: brightness(120%);
@@ -34,3 +38,5 @@ export const Button = styled(Link)`
     transform: scale(0.5);
   }
 `;
+
+export const LogoContainer = styled(Link)``;
