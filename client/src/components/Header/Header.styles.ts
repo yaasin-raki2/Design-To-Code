@@ -65,3 +65,10 @@ export const CheckBoxIconsWrapper = styled.div`
   width: 120px;
   justify-content: space-between;
 `;
+
+export const LinksWrapper = styled.div`
+  width: 786px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;

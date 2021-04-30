@@ -9,6 +9,7 @@ import {
   Sun,
   Moon,
   CheckBoxIconsWrapper,
+  LinksWrapper,
 } from "./Header.styles";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useActions } from "../../hooks/useActions";
@@ -47,19 +48,21 @@ const Header: React.FC = () => {
         <Logo src={logo} />
       </LogoContainer>
 
-      <StyledLink to="/">Designs</StyledLink>
-      <StyledLink to="/">Submitions</StyledLink>
-      <StyledLink to="/">pricing</StyledLink>
+      <LinksWrapper>
+        <StyledLink to="/">Designs</StyledLink>
+        <StyledLink to="/">Submitions</StyledLink>
+        <StyledLink to="/">pricing</StyledLink>
 
-      {!currentUser && <StyledLink to="/login">Log In</StyledLink>}
+        {!currentUser && <StyledLink to="/login">Log In</StyledLink>}
 
-      {currentUser ? (
-        <Button to="/" onClick={onClick}>
-          Sign Out
-        </Button>
-      ) : (
-        <Button to="/signup">Sign Up</Button>
-      )}
+        {currentUser ? (
+          <StyledLink to="/" onClick={onClick}>
+            Sign Out
+          </StyledLink>
+        ) : (
+          <Button to="/signup">Sign Up</Button>
+        )}
+      </LinksWrapper>
 
       <CheckBoxIconsWrapper>
         <Moon src={moon} color={moonColor} />
