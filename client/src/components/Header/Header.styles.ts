@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import SVG from "react-inlinesvg";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -40,3 +41,9 @@ export const Button = styled(Link)`
 `;
 
 export const LogoContainer = styled(Link)``;
+
+export const Logo = styled(SVG)`
+  & path {
+    fill: ${({ theme }) => theme.text};
+  }
+`;

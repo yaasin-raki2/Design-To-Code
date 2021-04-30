@@ -1,12 +1,13 @@
 import React from "react";
 
-import { Wrapper, StyledLink, Button, LogoContainer } from "./Header.styles";
+import { Wrapper, StyledLink, Button, LogoContainer, Logo } from "./Header.styles";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useActions } from "../../hooks/useActions";
-import { ReactComponent as Logo } from "../../assets/Logo.svg";
+import logo from "../../assets/Logo.svg";
+import CheckBox from "../CheckBox/CheckBox.component";
 
 const Header: React.FC = () => {
-  const { signout } = useActions();
+  const { signout, setLightTheme, setDarkTheme } = useActions();
 
   const currentUser = useTypedSelector((state) => state.user.currentUser);
 
@@ -14,10 +15,14 @@ const Header: React.FC = () => {
     signout();
   };
 
+  const onChange = (checked: HTMLInputElement["checked"]) => {
+    checked ? setLightTheme() : setDarkTheme();
+  };
+
   return (
     <Wrapper>
       <LogoContainer to="/">
-        <Logo />
+        <Logo src={logo} />
       </LogoContainer>
 
       <StyledLink to="/">Designs</StyledLink>
@@ -33,6 +38,8 @@ const Header: React.FC = () => {
       ) : (
         <Button to="/signup">Sign Up</Button>
       )}
+
+      <CheckBox onChange={onChange} />
     </Wrapper>
   );
 };
