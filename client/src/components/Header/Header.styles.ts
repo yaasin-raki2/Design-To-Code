@@ -10,17 +10,16 @@ export const Wrapper = styled.div`
 `;
 
 export const StyledLink = styled(Link)`
-  color: ${(props) => (props.color ? props.color : "black")};
+  color: ${({ theme }) => theme.text};
   font-size: 16px;
 `;
 
 export const Button = styled(Link)`
-  background-color: #0e70f3;
-  border: 1px solid #0e70f3;
+  background-color: ${({ theme }) => theme.primary};
   padding: 10px 15px;
   border-radius: 10px;
   transition: 0.5s;
-  color: #fff;
+  color: #000;
   font-size: 20px;
   cursor: pointer;
   outline: none;
@@ -28,8 +27,7 @@ export const Button = styled(Link)`
   text-align: center;
 
   :hover {
-    background-color: #fff;
-    color: #0e70f3;
+    filter: brightness(120%);
   }
 
   :active {

@@ -1,14 +1,14 @@
 export type ThemeType = typeof light; // This is the type definition for my theme object.
 
 export const light = {
-  primary: "#f45511",
-  secondary: "#f45511",
+  primary: "#FAFF00",
+  secondary: "#FAFF00",
   text: "#000",
   background: "#fff",
 };
 export const dark: ThemeType = {
-  primary: "#f45511",
-  secondary: "#fff",
+  primary: "#FAFF00",
+  secondary: "#8443D8",
   text: "#fff",
   background: "#363537",
 };

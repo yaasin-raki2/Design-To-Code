@@ -1,4 +1,4 @@
-import { ThemeActionTypes } from "./theme.types";
+import { ThemeActionTypes } from "./theme.types.d";
 import { SetLightTheme, SetDarkTheme } from "./theme.actions.d";
 import { light, dark } from "../../theme/theme";
 

@@ -10,10 +10,11 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0 auto;
     height: 100%;
     max-width: 1440px;
+    background-color: ${({ theme }) => theme.background};
   }
 
   a {
     text-decoration: none;
-    color: black;
+    color: ${({ theme }) => theme.text};
   }
 `;

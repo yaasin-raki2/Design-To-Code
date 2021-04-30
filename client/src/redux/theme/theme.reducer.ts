@@ -1,5 +1,5 @@
 import defaultTheme, { ThemeType } from "../../theme/theme";
-import { ThemeActionTypes } from "./theme.types";
+import { ThemeActionTypes } from "./theme.types.d";
 import { Action } from "./theme.actions.d";
 
 interface ThemeState {
