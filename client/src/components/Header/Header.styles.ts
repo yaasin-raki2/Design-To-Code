@@ -47,3 +47,21 @@ export const Logo = styled(SVG)`
     fill: ${({ theme }) => theme.text};
   }
 `;
+
+export const Moon = styled(SVG)<{ color: string }>`
+  & path {
+    fill: ${(props) => props.color};
+  }
+`;
+
+export const Sun = styled(SVG)<{ color: string }>`
+  & path {
+    fill: ${(props) => props.color};
+  }
+`;
+
+export const CheckBoxIconsWrapper = styled.div`
+  display: flex;
+  width: 120px;
+  justify-content: space-between;
+`;

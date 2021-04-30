@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 export const CheckBoxWrapper = styled.div`
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const CheckBoxLabel = styled.label`
@@ -11,8 +14,10 @@ export const CheckBoxLabel = styled.label`
   width: 42px;
   height: 26px;
   border-radius: 15px;
-  background: #bebebe;
+  background: #8443d8;
   cursor: pointer;
+  display: flex;
+  align-items: center;
   &::after {
     content: "";
     display: block;
@@ -20,8 +25,7 @@ export const CheckBoxLabel = styled.label`
     width: 18px;
     height: 18px;
     margin: 3px;
-    background: #ffffff;
-    box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
+    background: ${({ theme }) => theme.background};
     transition: 0.2s;
   }
 `;
@@ -31,9 +35,9 @@ export const CheckBoxInput = styled.input`
   z-index: 1;
   border-radius: 15px;
   width: 42px;
-  height: 26px;
+  height: 20px;
   &:checked + ${CheckBoxLabel} {
-    background: #4fbe79;
+    background: ${({ theme }) => theme.primary};
     &::after {
       content: "";
       display: block;

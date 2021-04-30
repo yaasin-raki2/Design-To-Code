@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { Wrapper, StyledLink, Button, LogoContainer, Logo } from "./Header.styles";
+import {
+  Wrapper,
+  StyledLink,
+  Button,
+  LogoContainer,
+  Logo,
+  Sun,
+  Moon,
+  CheckBoxIconsWrapper,
+} from "./Header.styles";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useActions } from "../../hooks/useActions";
 import logo from "../../assets/Logo.svg";
+import sun from "../../assets/SunIcon.svg";
+import moon from "../../assets/MoonIcon.svg";
 import CheckBox from "../CheckBox/CheckBox.component";
 
 const Header: React.FC = () => {
@@ -15,8 +26,19 @@ const Header: React.FC = () => {
     signout();
   };
 
+  const [sunColor, setSunColor] = useState("#FAFF00");
+  const [moonColor, setMoonColor] = useState("#D1D1D1");
+
   const onChange = (checked: HTMLInputElement["checked"]) => {
-    checked ? setLightTheme() : setDarkTheme();
+    if (checked) {
+      setLightTheme();
+      setSunColor("#FAFF00");
+      setMoonColor("#D1D1D1");
+    } else {
+      setDarkTheme();
+      setSunColor("#D1D1D1");
+      setMoonColor("#8443D8");
+    }
   };
 
   return (
@@ -26,8 +48,8 @@ const Header: React.FC = () => {
       </LogoContainer>
 
       <StyledLink to="/">Designs</StyledLink>
-      <StyledLink to="/">Dashboard</StyledLink>
-      <StyledLink to="/">profile</StyledLink>
+      <StyledLink to="/">Submitions</StyledLink>
+      <StyledLink to="/">pricing</StyledLink>
 
       {!currentUser && <StyledLink to="/login">Log In</StyledLink>}
 
@@ -39,7 +61,11 @@ const Header: React.FC = () => {
         <Button to="/signup">Sign Up</Button>
       )}
 
-      <CheckBox onChange={onChange} />
+      <CheckBoxIconsWrapper>
+        <Moon src={moon} color={moonColor} />
+        <CheckBox onChange={onChange} />
+        <Sun src={sun} color={sunColor} />
+      </CheckBoxIconsWrapper>
     </Wrapper>
   );
 };
