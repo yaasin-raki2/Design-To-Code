@@ -36,6 +36,7 @@ export const CheckBoxInput = styled.input`
   border-radius: 15px;
   width: 42px;
   height: 20px;
+  cursor: pointer;
   &:checked + ${CheckBoxLabel} {
     background: ${({ theme }) => theme.primary};
     &::after {

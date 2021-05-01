@@ -5,7 +5,7 @@ import SVG from "react-inlinesvg";
 export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 100px;
+  height: 91px;
   align-items: center;
   margin: auto;
 `;
