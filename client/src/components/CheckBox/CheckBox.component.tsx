@@ -1,4 +1,5 @@
 import { FC, useState, ChangeEvent } from "react";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 import { CheckBoxInput, CheckBoxLabel, CheckBoxWrapper } from "./CheckBox.styles";
 
@@ -7,14 +8,9 @@ interface CheckBoxProps {
 }
 
 const CheckBox: FC<CheckBoxProps> = ({ onChange }) => {
-  const [checkboxValue, setCheckboxValue] = useState(true);
+  const theme = useTypedSelector((state) => state.theme.appliedTheme);
 
-  const onChangeCheckbox = (event: ChangeEvent<HTMLInputElement>) => {
-    setCheckboxValue(!checkboxValue);
-    onChange(event.target.checked);
-  };
-
-  console.log(checkboxValue);
+  let checkboxValue = theme.background === "#fff" ? true : false;
 
   return (
     <CheckBoxWrapper>
@@ -22,7 +18,7 @@ const CheckBox: FC<CheckBoxProps> = ({ onChange }) => {
         id="checkbox"
         type="checkbox"
         checked={checkboxValue}
-        onChange={onChangeCheckbox}
+        onChange={(event) => onChange(event.target.checked)}
       />
       <CheckBoxLabel htmlFor="checkbox" />
     </CheckBoxWrapper>

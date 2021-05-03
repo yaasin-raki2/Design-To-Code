@@ -8,14 +8,23 @@ import {
   Logo,
   Sun,
   Moon,
+  Menu,
+  Cross,
   CheckBoxIconsWrapper,
   LinksWrapper,
+  SideNav,
+  SideNavButton,
+  SideNavSignUpButton,
+  SideNavButtonsWrapper,
+  SideNavHeader,
 } from "./Header.styles";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { useActions } from "../../hooks/useActions";
 import logo from "../../assets/Logo.svg";
 import sun from "../../assets/SunIcon.svg";
 import moon from "../../assets/MoonIcon.svg";
+import menu from "../../assets/Menu.svg";
+import cross from "../../assets/Cross.svg";
 import CheckBox from "../CheckBox/CheckBox.component";
 
 const Header: React.FC = () => {
@@ -42,6 +51,8 @@ const Header: React.FC = () => {
     }
   };
 
+  const [menuClicked, setMenuClicked] = useState(false);
+
   return (
     <Wrapper>
       <LogoContainer to="/">
@@ -63,6 +74,36 @@ const Header: React.FC = () => {
           <Button to="/signup">Sign Up</Button>
         )}
       </LinksWrapper>
+      {menuClicked ? (
+        <SideNav>
+          <SideNavHeader>
+            <CheckBoxIconsWrapper>
+              <Moon src={moon} color={moonColor} />
+              <CheckBox onChange={onChange} />
+              <Sun src={sun} color={sunColor} />
+            </CheckBoxIconsWrapper>
+
+            <Cross src={cross} onClick={() => setMenuClicked(!menuClicked)} />
+          </SideNavHeader>
+          <SideNavButtonsWrapper>
+            <SideNavButton to="/">Designs</SideNavButton>
+            <SideNavButton to="/">Submitions</SideNavButton>
+            <SideNavButton to="/">pricing</SideNavButton>
+
+            {!currentUser && <SideNavButton to="/login">Log In</SideNavButton>}
+
+            {currentUser ? (
+              <SideNavSignUpButton to="/" onClick={onClick}>
+                Sign Out
+              </SideNavSignUpButton>
+            ) : (
+              <SideNavSignUpButton to="/signup">Sign Up</SideNavSignUpButton>
+            )}
+          </SideNavButtonsWrapper>
+        </SideNav>
+      ) : (
+        <Menu src={menu} onClick={() => setMenuClicked(!menuClicked)} />
+      )}
 
       <CheckBoxIconsWrapper>
         <Moon src={moon} color={moonColor} />
