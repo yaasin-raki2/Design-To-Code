@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, FormEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from "react";
 
 import { Wrapper, FromWrapper, TextWrapper, SmallText, BigText } from "./Login.styles";
 import FormInput from "../../components/FormInput/FormInput.component";

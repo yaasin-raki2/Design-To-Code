@@ -1,4 +1,4 @@
-import { useState, FC } from "react";
+import React, { useState, FC } from "react";
 
 import { ThemeSwitchWrapper, Moon, Sun } from "./ThemeSwitch.styles";
 import sun from "../../assets/SunIcon.svg";

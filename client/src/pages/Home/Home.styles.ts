@@ -20,12 +20,19 @@ export const HeroSectionWrapper = styled.div`
     "hero-button hero-illustration";
   height: 575px;
 
+  @media (max-width: 1300px) {
+    height: 454px;
+    width: 1037px;
+    margin: auto;
+  }
+
   @media (max-width: 600px) {
     grid-template-areas:
       "hero-title"
       "hero-illustration"
       "hero-body "
       "hero-button";
+    width: auto;
     height: 657px;
   }
 `;
@@ -39,6 +46,13 @@ export const HeroTitle = styled.h1`
   width: 724px;
   height: 270px;
   color: ${({ theme }) => theme.text};
+
+  @media (max-width: 1300px) {
+    width: 513px;
+    height: 180px;
+    font-size: 40px;
+    line-height: 60px;
+  }
 
   @media (max-width: 600px) {
     width: 364px;
@@ -119,6 +133,11 @@ export const HeroButton = styled(Link)`
 export const HeroIllustration = styled(SVG)`
   grid-area: hero-illustration;
   margin-top: 18px;
+
+  @media (max-width: 1300px) {
+    width: 395px;
+    height: 432px;
+  }
 
   @media (max-width: 600px) {
     width: 202px;
